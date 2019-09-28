@@ -1,0 +1,4618 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    192857,       4610]
+NotebookOptionsPosition[    185677,       4491]
+NotebookOutlinePosition[    186016,       4506]
+CellTagsIndexPosition[    185973,       4503]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{"Run", " ", "2", "_H3", "_Calculation", "_of", "_objects", " ", 
+   RowBox[{"first", "!"}]}], " ", "*)"}]], "Input",
+ CellChangeTimes->{3.75057682536008*^9, 
+  3.778599475713173*^9},ExpressionUUID->"81dcc3ce-118d-4994-9622-\
+440f0e0614e6"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Calculation of the ABC-equation for perfect tangles in Haagerup\
+\>", "Title",
+ CellChangeTimes->{{3.750577473618588*^9, 3.750577508631472*^9}, 
+   3.775039075607439*^9},ExpressionUUID->"ed6f78a9-05d2-47f3-af66-\
+d6fe23a6d9fc"],
+
+Cell[CellGroupData[{
+
+Cell["Definitions", "Chapter",
+ CellChangeTimes->{{3.7505775242748127`*^9, 
+  3.7505775280791073`*^9}},ExpressionUUID->"4e07730f-78cc-42f2-8d3d-\
+bc59da7caf4d"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Install TriCat package by Stiegemann and load adjacency matrices and \
+relations for morphisms in ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["C", "6"], TraditionalForm]],ExpressionUUID->
+  "4a820411-99f8-4789-8d4d-ba560fb0c965"]
+}], "Section",
+ CellChangeTimes->{{3.750576847933487*^9, 3.7505768666506767`*^9}, {
+  3.778576862711281*^9, 
+  3.778576917328095*^9}},ExpressionUUID->"b60706ac-159f-4b47-94f6-\
+68c36c0a35c6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Install", " ", "Library", " ", "for", " ", "trivalent", " ", 
+    "Categories"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"<<", "TriCats`"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Load", " ", "Elements", " ", "from", " ", "C4", " ", "of", " ", "a", " ",
+      "cubic", " ", "trivalent", " ", "category"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"LoadLibrary", "[", "\"\<stdlib\>\"", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"C4", "=", 
+     RowBox[{"Retrieve", "[", "\"\<C4Atoms\>\"", "]"}]}], ";"}]}]}]], "Input",\
+
+ CellChangeTimes->{{3.751622453074247*^9, 3.751622469098177*^9}, {
+  3.7740933187079372`*^9, 3.7740933369341373`*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"801ea650-f437-43ba-9f37-80d432615e61"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ip61", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<ip61.m\>\""}], 
+      "}"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ip62", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<ip62.m\>\""}], 
+      "}"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nullspace62", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+       "\"\<nullspace62.m\>\""}], "}"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"C61", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<C61.m\>\""}], "}"}],
+      "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"C62", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<C62.m\>\""}], "}"}],
+      "]"}], "]"}]}], ";"}]}], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"39eafab2-6728-49b3-8336-a9da49bef5b8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Define basis, operators and parameters", "Section",
+ CellChangeTimes->{{3.7505769196881657`*^9, 
+  3.750576949743608*^9}},ExpressionUUID->"575462ea-d1b7-43a5-8f88-\
+6924b6c77091"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Define", " ", "function", " ", "which", " ", "moves", " ", "legs", " ", 
+    "of", " ", "every", " ", "Diagram", " ", "in", " ", "a", " ", "list", " ",
+     "of", " ", "diagrams", " ", "down"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"DiagramsMoveAllDown", "[", 
+    RowBox[{"diagramList_", ",", "newIngoingLegs_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "MovedDiagramList", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"MovedDiagramList", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", 
+         RowBox[{"Length", "[", "diagramList", "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", 
+        RowBox[{"MovedDiagramList", "=", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"MovedDiagramList", ",", 
+           RowBox[{"DiagramMoveDown", "[", 
+            RowBox[{
+             RowBox[{"diagramList", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], ",", "newIngoingLegs"}], 
+            "]"}]}], "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "MovedDiagramList", "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.750577230907954*^9, 3.75057727570535*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"6c048de3-8778-4d0b-b0bb-bb88f779c3ca"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Define", " ", "Basis", " ", "of", " ", "C4", " ", "of", " ", "cubic", " ",
+     "trivalent", " ", "category"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"C4Basis", "=", 
+    RowBox[{
+     RowBox[{"DiagramsMoveAllDown", "[", 
+      RowBox[{"C4", ",", "2"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ";;", "4"}], "]"}], "]"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{
+  3.750577193081386*^9, {3.774094150217805*^9, 3.774094153456451*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"30e5f47c-3359-4fe9-96b1-29558f343e22"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"EnsureGraph", "[", "C4Basis", "]"}]], "Input",
+ CellChangeTimes->{{3.7772048776756353`*^9, 3.777204884493581*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"f4f466cf-c047-4f7e-8959-17f723a9dfd2"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Diagram", "[", 
+    RowBox[{
+     GraphicsBox[
+      NamespaceBox["NetworkGraphics",
+       DynamicModuleBox[{Typeset`graph = HoldComplete[
+         Graph[{1, 2, 3, 4}, {Null, 
+           SparseArray[
+           Automatic, {4, 4}, 0, {
+            1, {{0, 1, 2, 3, 4}, {{4}, {3}, {2}, {1}}}, Pattern}]}, {
+          VertexShapeFunction -> {"Name"}}]]}, 
+        TagBox[
+         GraphicsGroupBox[
+          GraphicsComplexBox[{{1.12501, -0.12501}, {
+           1.12501, -0.37503000000000003`}, {
+           0.12501000000000007`, -0.37503000000000003`}, {
+           0.12501000000000007`, -0.12501}}, {
+            {Hue[0.6, 0.7, 0.5], Opacity[0.7], LineBox[{{1, 4}, {2, 3}}]}, 
+            {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+             InsetBox[
+              PaneBox["1",
+               Alignment->Center,
+               ImageMargins->2], 1,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["2",
+               Alignment->Center,
+               ImageMargins->2], 2,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["3",
+               Alignment->Center,
+               ImageMargins->2], 3,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["4",
+               Alignment->Center,
+               ImageMargins->2], 4,
+              BaseStyle->"Graphics"]}}]],
+         MouseAppearanceTag["NetworkGraphics"]],
+        AllowKernelInitialization->False]],
+      DefaultBaseStyle->{
+       "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> 
+        Hue[0.8, 1., 0.6]},
+      FormatType->TraditionalForm,
+      FrameTicks->None], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}]}], "]"}], ",", 
+   RowBox[{"Diagram", "[", 
+    RowBox[{
+     GraphicsBox[
+      NamespaceBox["NetworkGraphics",
+       DynamicModuleBox[{Typeset`graph = HoldComplete[
+         Graph[{1, 2, 3, 4}, {Null, 
+           SparseArray[
+           Automatic, {4, 4}, 0, {
+            1, {{0, 1, 2, 3, 4}, {{2}, {1}, {4}, {3}}}, Pattern}]}, {
+          VertexShapeFunction -> {"Name"}}]]}, 
+        TagBox[
+         GraphicsGroupBox[
+          GraphicsComplexBox[{{1.12501, -0.12501}, {
+           0.12501000000000007`, -0.12501}, {
+           1.12501, -0.37503000000000003`}, {
+           0.12501000000000007`, -0.37503000000000003`}}, {
+            {Hue[0.6, 0.7, 0.5], Opacity[0.7], LineBox[{{1, 2}, {3, 4}}]}, 
+            {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+             InsetBox[
+              PaneBox["1",
+               Alignment->Center,
+               ImageMargins->2], 1,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["2",
+               Alignment->Center,
+               ImageMargins->2], 2,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["3",
+               Alignment->Center,
+               ImageMargins->2], 3,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["4",
+               Alignment->Center,
+               ImageMargins->2], 4,
+              BaseStyle->"Graphics"]}}]],
+         MouseAppearanceTag["NetworkGraphics"]],
+        AllowKernelInitialization->False]],
+      DefaultBaseStyle->{
+       "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> 
+        Hue[0.8, 1., 0.6]},
+      FormatType->TraditionalForm,
+      FrameTicks->None], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}]}], "]"}], ",", 
+   RowBox[{"Diagram", "[", 
+    RowBox[{
+     GraphicsBox[
+      NamespaceBox["NetworkGraphics",
+       DynamicModuleBox[{Typeset`graph = HoldComplete[
+         Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+           SparseArray[
+           Automatic, {6, 6}, 0, {
+            1, {{0, 1, 2, 3, 4, 7, 10}, {{5}, {5}, {6}, {6}, {1}, {2}, {6}, {
+              3}, {4}, {5}}}, Pattern}]}, {
+          VertexShapeFunction -> {"Name"}}]]}, 
+        TagBox[
+         GraphicsGroupBox[
+          GraphicsComplexBox[{{0., 0.8164965809277261}, {0.8164965809277261, 
+           0.8164965809277261}, {1.2247448713915892`, 0.}, {2.041241452319315,
+            0.}, {0.8164965809277261, 1.6329931618554523`}, {
+           1.6329931618554523`, 0.8164965809277261}}, {
+            {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+             LineBox[{{1, 5}, {2, 5}, {3, 6}, {4, 6}, {5, 6}}]}, 
+            {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+             InsetBox[
+              PaneBox["1",
+               Alignment->Center,
+               ImageMargins->2], 1,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["2",
+               Alignment->Center,
+               ImageMargins->2], 2,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["3",
+               Alignment->Center,
+               ImageMargins->2], 3,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["4",
+               Alignment->Center,
+               ImageMargins->2], 4,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["5",
+               Alignment->Center,
+               ImageMargins->2], 5,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["6",
+               Alignment->Center,
+               ImageMargins->2], 6,
+              BaseStyle->"Graphics"]}}]],
+         MouseAppearanceTag["NetworkGraphics"]],
+        AllowKernelInitialization->False]],
+      DefaultBaseStyle->{
+       "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> 
+        Hue[0.8, 1., 0.6]},
+      FormatType->TraditionalForm,
+      FrameTicks->None], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}]}], "]"}], ",", 
+   RowBox[{"Diagram", "[", 
+    RowBox[{
+     GraphicsBox[
+      NamespaceBox["NetworkGraphics",
+       DynamicModuleBox[{Typeset`graph = HoldComplete[
+         Graph[{1, 2, 3, 4, 5, 6}, {Null, 
+           SparseArray[
+           Automatic, {6, 6}, 0, {
+            1, {{0, 1, 2, 3, 4, 7, 10}, {{6}, {5}, {5}, {6}, {2}, {3}, {6}, {
+              1}, {4}, {5}}}, Pattern}]}, {
+          VertexShapeFunction -> {"Name"}}]]}, 
+        TagBox[
+         GraphicsGroupBox[
+          GraphicsComplexBox[{{0., 0.8164965809277261}, {1.2247448713915892`, 
+           0.}, {2.041241452319315, 0.}, {0.8164965809277261, 
+           0.8164965809277261}, {1.6329931618554523`, 0.8164965809277261}, {
+           0.8164965809277261, 1.6329931618554523`}}, {
+            {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+             LineBox[{{1, 6}, {2, 5}, {3, 5}, {4, 6}, {5, 6}}]}, 
+            {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+             InsetBox[
+              PaneBox["1",
+               Alignment->Center,
+               ImageMargins->2], 1,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["2",
+               Alignment->Center,
+               ImageMargins->2], 2,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["3",
+               Alignment->Center,
+               ImageMargins->2], 3,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["4",
+               Alignment->Center,
+               ImageMargins->2], 4,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["5",
+               Alignment->Center,
+               ImageMargins->2], 5,
+              BaseStyle->"Graphics"], InsetBox[
+              PaneBox["6",
+               Alignment->Center,
+               ImageMargins->2], 6,
+              BaseStyle->"Graphics"]}}]],
+         MouseAppearanceTag["NetworkGraphics"]],
+        AllowKernelInitialization->False]],
+      DefaultBaseStyle->{
+       "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> 
+        Hue[0.8, 1., 0.6]},
+      FormatType->TraditionalForm,
+      FrameTicks->None], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}]}], "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.777204885286282*^9, 3.777284108863494*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"9bb9ef6d-8acc-47e4-a8d6-15999356521c"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Define", " ", "operators", " ", "in", " ", "basis", " ", 
+    "representation"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Clear", "[", 
+     RowBox[{
+     "a1", ",", "a2", ",", "a3", ",", "a4", ",", "b1", ",", "b2", ",", "b3", 
+      ",", "b4", ",", "c1", ",", "c2", ",", "c3", ",", "c4", ",", "d1", ",", 
+      "d2", ",", "d3", ",", "d4", ",", "t1", ",", "t2", ",", "t3", ",", 
+      "t4"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"OpA", "=", 
+     RowBox[{
+      RowBox[{"a1", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "+", 
+      RowBox[{"a2", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "+", 
+      RowBox[{"a3", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "3", "]"}], "]"}]}], "+", 
+      RowBox[{"a4", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "4", "]"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"OpB", "=", 
+     RowBox[{
+      RowBox[{"b1", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "+", 
+      RowBox[{"b2", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "+", 
+      RowBox[{"b3", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "3", "]"}], "]"}]}], "+", 
+      RowBox[{"b4", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "4", "]"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"OpC", "=", 
+     RowBox[{
+      RowBox[{"c1", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "+", 
+      RowBox[{"c2", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "+", 
+      RowBox[{"c3", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "3", "]"}], "]"}]}], "+", 
+      RowBox[{"c4", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "4", "]"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"OpD", "=", 
+     RowBox[{
+      RowBox[{"d1", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "+", 
+      RowBox[{"d2", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "+", 
+      RowBox[{"d3", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "3", "]"}], "]"}]}], "+", 
+      RowBox[{"d4", "*", 
+       RowBox[{"C4Basis", "[", 
+        RowBox[{"[", "4", "]"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"OpT", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"t1", "*", 
+        RowBox[{"C4Basis", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], "+", 
+       RowBox[{"t2", "*", 
+        RowBox[{"C4Basis", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "+", 
+       RowBox[{"t3", "*", 
+        RowBox[{"C4Basis", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}], "+", 
+       RowBox[{"t4", "*", 
+        RowBox[{"C4Basis", "[", 
+         RowBox[{"[", "4", "]"}], "]"}]}]}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"t1", "\[Rule]", 
+         RowBox[{"4", "/", 
+          RowBox[{"Sqrt", "[", "3", "]"}]}]}], ",", 
+        RowBox[{"t2", "\[Rule]", 
+         RowBox[{
+          RowBox[{"d", "/", 
+           RowBox[{"Sqrt", "[", "3", "]"}]}], "-", 
+          RowBox[{"I", "*", 
+           RowBox[{"Sqrt", "[", 
+            RowBox[{"5", "-", "d"}], "]"}]}]}]}], ",", 
+        RowBox[{"t4", "\[Rule]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "2"}], "*", 
+           RowBox[{"Sqrt", "[", "3", "]"}], 
+           RowBox[{"(", 
+            RowBox[{"d", "+", "1"}], ")"}]}], "+", 
+          RowBox[{"2", "*", "I", "*", 
+           RowBox[{"Sqrt", "[", 
+            RowBox[{
+             RowBox[{"5", "*", "d"}], "+", "2"}], "]"}]}]}]}], ",", 
+        RowBox[{"t3", "\[Rule]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "3"}], "*", 
+           RowBox[{"Sqrt", "[", "3", "]"}], "*", "d"}], "+", 
+          RowBox[{"I", "*", 
+           RowBox[{"Sqrt", "[", 
+            RowBox[{"5", "-", "d"}], "]"}]}]}]}]}], "}"}]}]}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.774093822754243*^9, 3.7740938477039633`*^9}, 
+   3.774093887552885*^9, {3.774093945071018*^9, 3.774093970418618*^9}, {
+   3.7740940328354177`*^9, 3.774094096845139*^9}, {3.77720541049923*^9, 
+   3.777205413475664*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"e9eb5517-2472-478d-a2c3-06811452d082"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Definition", " ", "of", " ", "the", " ", "parameters", " ", "of", " ", 
+    "the", " ", "trivalent", " ", 
+    RowBox[{"category", ".", " ", 
+     RowBox[{"Here", ":", " ", "Hagerup"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"bigon", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"loop", "=", 
+     FractionBox[
+      RowBox[{"3", "+", 
+       SqrtBox["13"]}], "2"]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"triangle", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox["2", "3"]}], "loop"}], "+", 
+      FractionBox["5", "3"]}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.778684321173202*^9, 
+  3.778684323041971*^9}},ExpressionUUID->"f1a5053a-147a-464a-a7fd-\
+799421b2ac27"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Define", " ", "basis", " ", "for", " ", "C6", " ", "in", " ", "Hagerup"}],
+    "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"C6Basis", "=", 
+    RowBox[{"Delete", "[", 
+     RowBox[{"C61", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "38", "}"}], ",", 
+        RowBox[{"{", "39", "}"}], ",", 
+        RowBox[{"{", "40", "}"}], ",", 
+        RowBox[{"{", "41", "}"}]}], "}"}]}], "]"}]}], ";"}]}]], "Input",
+ CellLabel->"In[36]:=",ExpressionUUID->"af1338bc-5b60-4599-bb9c-47b1bd758527"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Define function which replaces linear dependent diagrams in C(6,2) by \
+corresponding basis representation\
+\>", "Section",
+ CellChangeTimes->{{3.750577377475211*^9, 
+  3.75057745400946*^9}},ExpressionUUID->"26cf6a91-d7e6-4fee-b6b8-\
+1937c5589fd0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "This", " ", "function", " ", "replaces", " ", "all", " ", "diagrams", " ",
+     "which", " ", "are", " ", "no", " ", "basis", " ", "elements", " ", "of",
+     " ", "C6", " ", "by", " ", "a", " ", "linear", " ", "combination", " ", 
+    "of", " ", 
+    RowBox[{"C6", "'"}], "s", " ", "basis", " ", "elements"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ReplaceKernDiagrams", "[", "diagram_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "KernDiagrams", ",", "KernDiagramsInOut", ",", "DiagramList", ",", 
+        "ingoingLegs", ",", "ReplacementRules", ",", "ReplacedDiagramList", 
+        ",", "ReplacedDiagram", ",", "NormalDiagramList", ",", "DistinctList",
+         ",", "ReplaceWrongForm"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"DiagramList", "=", 
+        RowBox[{"List", "@@", 
+         RowBox[{"ExpandAll", "[", "diagram", "]"}]}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ingoingLegs", "=", 
+        RowBox[{"Length", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"DistinctDiagrams", "[", 
+            RowBox[{"List", "@@", "diagram"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"KernDiagrams", "=", 
+        RowBox[{"C62", "[", 
+         RowBox[{"[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", "C6Basis", "]"}], "+", "1"}], ";;", 
+           RowBox[{"Length", "[", "C62", "]"}]}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"KernDiagramsInOut", "=", 
+        RowBox[{"DiagramsMoveAllDown", "[", 
+         RowBox[{"KernDiagrams", ",", "ingoingLegs"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ReplacementRules", "=", "KernDiagramsInOut"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "\[LessEqual]", 
+          RowBox[{"Length", "[", "KernDiagramsInOut", "]"}]}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{"ReplacementRules", "=", 
+          RowBox[{"ReplacePart", "[", 
+           RowBox[{"ReplacementRules", ",", 
+            RowBox[{"i", "\[Rule]", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"KernDiagramsInOut", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+               RowBox[{"(", 
+                RowBox[{"Sum", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"nullspace62", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], "*", 
+                   RowBox[{"DiagramMoveDown", "[", 
+                    RowBox[{
+                    RowBox[{"C6Basis", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], ",", "ingoingLegs"}], 
+                    "]"}]}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"j", ",", 
+                    RowBox[{"Length", "[", "C6Basis", "]"}]}], "}"}]}], "]"}],
+                 ")"}]}], " ", ")"}]}]}], "]"}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"DistinctList", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "\[LessEqual]", 
+          RowBox[{"Length", "[", "DiagramList", "]"}]}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{"DistinctList", "=", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"DistinctList", ",", 
+            RowBox[{
+             RowBox[{"DeleteCases", "[", 
+              RowBox[{
+               RowBox[{"List", "@@", 
+                RowBox[{"DiagramList", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+               RowBox[{"Except", "[", "_Diagram", "]"}]}], "]"}], "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"DistinctList", "=", 
+        RowBox[{"DeleteDuplicates", "[", "DistinctList", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ReplaceWrongForm", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "\[LessEqual]", 
+          RowBox[{"Length", "[", "DistinctList", "]"}]}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"j", "=", "1"}], ",", 
+           RowBox[{"j", "\[LessEqual]", 
+            RowBox[{"Length", "[", "KernDiagramsInOut", "]"}]}], ",", 
+           RowBox[{"j", "++"}], ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"IsomorphicDiagramQ", "[", 
+               RowBox[{
+                RowBox[{"DistinctList", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", 
+                RowBox[{"KernDiagramsInOut", "[", 
+                 RowBox[{"[", "j", "]"}], "]"}]}], "]"}], "\[Equal]", 
+              "True"}], ",", 
+             RowBox[{"ReplaceWrongForm", "=", 
+              RowBox[{"AppendTo", "[", 
+               RowBox[{"ReplaceWrongForm", ",", 
+                RowBox[{
+                 RowBox[{"DistinctList", "[", 
+                  RowBox[{"[", "i", "]"}], "]"}], "\[Rule]", 
+                 RowBox[{"KernDiagramsInOut", "[", 
+                  RowBox[{"[", "j", "]"}], "]"}]}]}], "]"}]}]}], "]"}]}], 
+          "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"NormalDiagramList", "=", 
+        RowBox[{"DiagramList", "/.", "ReplaceWrongForm"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ReplacedDiagramList", "=", 
+        RowBox[{"NormalDiagramList", "/.", "ReplacementRules"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ReplacedDiagram", "=", 
+        RowBox[{"Total", "[", "ReplacedDiagramList", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "ReplacedDiagram", "]"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}]}]], "Input",
+ CellLabel->"In[37]:=",ExpressionUUID->"f045bec1-6bdf-4987-9eed-de4b1e3f3629"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculations", "Chapter",
+ CellChangeTimes->{{3.750577535915402*^9, 
+  3.7505775417832212`*^9}},ExpressionUUID->"d27f85cd-bede-43f8-a197-\
+d9f7a34c04fa"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Calculate the case Tangle4 = Tangle0 to get a solution for A in terms of the \
+other parameters\
+\>", "Section",
+ CellChangeTimes->{
+  3.750576895340221*^9},ExpressionUUID->"608d78e4-239a-494f-b264-\
+af952a978c4a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Definition", " ", "of", " ", "the", " ", "case", " ", "where", " ", 
+    "tangle", " ", "intersects", " ", "all", " ", "four", " ", "legs"}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Tangle4", "=", 
+    RowBox[{"ReduceDiagram", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"DiagramTensor", "[", 
+         RowBox[{
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Cup\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"DiagramTensor", "[", 
+           RowBox[{"OpA", ",", "OpD"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"DiagramTensor", "[", 
+             RowBox[{
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", "OpT", ",", 
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"DiagramTensor", "[", 
+               RowBox[{"OpB", ",", "OpC"}], "]"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"DiagramTensor", "[", 
+               RowBox[{
+                RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+                RowBox[{"Retrieve", "[", "\"\<Cap\>\"", "]"}], ",", 
+                RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}]}], 
+             "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], 
+      "\[IndentingNewLine]", ",", 
+      RowBox[{"b", "\[Rule]", "bigon"}], ",", 
+      RowBox[{"d", "\[Rule]", " ", "loop"}], ",", 
+      RowBox[{"t", "\[Rule]", " ", "triangle"}]}], "]"}]}], ";"}]}]], "Input",\
+
+ CellChangeTimes->{{3.7505775701226473`*^9, 3.750577591035965*^9}, {
+  3.750577672556541*^9, 3.750577673309649*^9}, {3.77736464298413*^9, 
+  3.777364656285265*^9}},
+ CellLabel->"In[89]:=",ExpressionUUID->"a43cd88e-e341-412d-bf83-65590ffe749c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Calculate", " ", "Solution"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"T4Comp", "=", 
+     RowBox[{
+      RowBox[{"Components", "[", 
+       RowBox[{"Tangle4", ",", "C4Basis"}], "]"}], "/.", 
+      RowBox[{"d", "\[Rule]", "loop"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TComp", "=", 
+     RowBox[{
+      RowBox[{"Components", "[", 
+       RowBox[{"OpT", ",", "C4Basis"}], "]"}], "/.", 
+      RowBox[{"d", "\[Rule]", "loop"}]}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.7740948972791443`*^9, 3.7740949074456244`*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"a6e8f251-0bbc-4ddb-9849-c80a0b370589"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SolutionA", "=", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{"T4Comp", "\[Equal]", 
+      RowBox[{"TComp", "*", "loop"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a1", ",", "a2", ",", "a3", ",", "a4"}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.775039096430928*^9, 3.77503909728332*^9}, {
+  3.7750392838471212`*^9, 3.775039284087682*^9}},
+ CellLabel->"In[92]:=",ExpressionUUID->"457ce4c8-aa75-48fd-b106-0725dd570a73"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"a1Sol", "=", 
+  RowBox[{"SolutionA", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "1", ",", "2"}], "]"}], "]"}]}]], "Input",
+ CellLabel->"In[93]:=",ExpressionUUID->"61af94e5-faae-4caf-932a-9edeeeb6ed27"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"-", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"b4", " ", "c4", " ", "d3", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    FractionBox[
+                    RowBox[{"b4", " ", "c3", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"154"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0170\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["86", "243"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["25", "243"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.01703202422469024},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[86, 243], 
+                    Rational[-25, 243]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                    RowBox[{"b2", " ", "c2", " ", "d4", " ", 
+                    InterpretationBox[
+                    
+                    TemplateBox[{
+                    "AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.5351837584879964},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[2, 3], 
+                    Rational[-1, 3]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}]}], ")"}], " ", 
+                    RowBox[{"(", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], ")"}]}], "-", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"148"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}]}], ")"}], " ", 
+                  TemplateBox[{"1"},
+                   "OutputSizeLimit`Skeleton"]}], "-", 
+                 TemplateBox[{"1"},
+                  "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+               TemplateBox[{"1"},
+                "OutputSizeLimit`Skeleton"]}], "-", 
+              TemplateBox[{"1"},
+               "OutputSizeLimit`Skeleton"]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                TemplateBox[{"1"},
+                 "OutputSizeLimit`Skeleton"], ")"}], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"b4", " ", "c4", " ", "d3", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    FractionBox[
+                    RowBox[{"b4", " ", "c3", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"154"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0170\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["86", "243"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["25", "243"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.01703202422469024},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[86, 243], 
+                    Rational[-25, 243]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                    RowBox[{"b2", " ", "c2", " ", "d4", " ", 
+                    InterpretationBox[
+                    
+                    TemplateBox[{
+                    "AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.5351837584879964},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[2, 3], 
+                    Rational[-1, 3]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}]}], ")"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"156"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}]}], "-", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+                  TemplateBox[{"1"},
+                   "OutputSizeLimit`Skeleton"]}], "-", 
+                 TemplateBox[{"1"},
+                  "OutputSizeLimit`Skeleton"]}], ")"}]}], "-", 
+              TemplateBox[{"1"},
+               "OutputSizeLimit`Skeleton"]}], ")"}]}], ")"}]}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          PaneBox[
+           TagBox[
+            TooltipBox[
+             StyleBox[
+              StyleBox[
+               DynamicBox[ToBoxes[
+                 FEPrivate`FrontEndResource[
+                 "FEStrings", "sizeBriefExplanation"], StandardForm],
+                ImageSizeCache->{58., {2., 8.}}],
+               StripOnInput->False,
+               DynamicUpdating->True,
+               LineSpacing->{1, 2},
+               LineIndent->0,
+               LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLText",
+              StripOnInput->False],
+             StyleBox[
+              DynamicBox[
+               ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+                StandardForm]], DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}, StripOnInput -> False]],
+            Annotation[#, 
+             Style[
+              Dynamic[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+              DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}], "Tooltip"]& ],
+           Alignment->Center,
+           BaselinePosition->Baseline,
+           ImageSize->{Automatic, {25, Full}}], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 93, 16054203547815041110, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 93, 16054203547815041110, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 93, 16054203547815041110, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[16054203547815041110 === $SessionID, 
+   Out[93], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{3.750577987754509*^9, 3.774094302810863*^9, 
+  3.7740949929912443`*^9, 3.775039330009287*^9, 3.7772841907664022`*^9, 
+  3.777364781360736*^9},
+ CellLabel->"Out[93]=",ExpressionUUID->"4c4e8517-002c-44de-8a36-25cffabf391e"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<a1Sol.m\>\"", ",", "a1Sol"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.774155878827711*^9, 3.774155891135062*^9}},
+ CellLabel->"In[94]:=",ExpressionUUID->"43dbaabc-3423-4659-8ebc-c1529ed57e93"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"a2Sol", "=", 
+  RowBox[{"SolutionA", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "2", ",", "2"}], "]"}], "]"}]}]], "Input",
+ CellLabel->"In[95]:=",ExpressionUUID->"b97bd0a2-1ea8-4751-b68b-d23dafc84c3f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"b4", " ", "c4", " ", "d3", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    FractionBox[
+                    RowBox[{"b4", " ", "c3", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    FractionBox[
+                    RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0888\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["274", "81"]}], ",", 
+                    FractionBox["74", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.08875562488475068},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-274, 81], 
+                    Rational[74, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"153"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0170\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["86", "243"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["25", "243"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.01703202422469024},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[86, 243], 
+                    Rational[-25, 243]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                    RowBox[{"b2", " ", "c2", " ", "d4", " ", 
+                    InterpretationBox[
+                    
+                    TemplateBox[{
+                    "AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.5351837584879964},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[2, 3], 
+                    Rational[-1, 3]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}]}], ")"}], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"4", " ", 
+                    TemplateBox[{"2"},
+                    "OutputSizeLimit`Skeleton"], " ", "d1"}], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"156"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}]}], "-", 
+                  TemplateBox[{"1"},
+                   "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+                RowBox[{"(", 
+                 TemplateBox[{"1"},
+                  "OutputSizeLimit`Skeleton"], ")"}]}], "-", 
+               TemplateBox[{"1"},
+                "OutputSizeLimit`Skeleton"]}], ")"}], "/", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"b4", " ", "c4", " ", "d3", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    FractionBox[
+                    RowBox[{"b4", " ", "c3", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    FractionBox[
+                    RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0888\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["274", "81"]}], ",", 
+                    FractionBox["74", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.08875562488475068},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-274, 81], 
+                    Rational[74, 81]}]]}], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"153"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0170\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["86", "243"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["25", "243"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.01703202422469024},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[86, 243], 
+                    Rational[-25, 243]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                    RowBox[{"b2", " ", "c2", " ", "d4", " ", 
+                    InterpretationBox[
+                    
+                    TemplateBox[{
+                    "AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.5351837584879964},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[2, 3], 
+                    Rational[-1, 3]}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}]}], ")"}], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"4", " ", 
+                    TemplateBox[{"2"},
+                    "OutputSizeLimit`Skeleton"], " ", "d1"}], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"156"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}]}], "-", 
+                  TemplateBox[{"1"},
+                   "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+                RowBox[{"(", 
+                 TemplateBox[{"1"},
+                  "OutputSizeLimit`Skeleton"], ")"}]}], "-", 
+               TemplateBox[{"1"},
+                "OutputSizeLimit`Skeleton"]}], ")"}]}], ")"}]}], "+", 
+          FractionBox[
+           TemplateBox[{"1"},
+            "OutputSizeLimit`Skeleton"], 
+           TemplateBox[{"1"},
+            "OutputSizeLimit`Skeleton"]]}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          PaneBox[
+           TagBox[
+            TooltipBox[
+             StyleBox[
+              StyleBox[
+               DynamicBox[ToBoxes[
+                 FEPrivate`FrontEndResource[
+                 "FEStrings", "sizeBriefExplanation"], StandardForm],
+                ImageSizeCache->{58., {2., 8.}}],
+               StripOnInput->False,
+               DynamicUpdating->True,
+               LineSpacing->{1, 2},
+               LineIndent->0,
+               LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLText",
+              StripOnInput->False],
+             StyleBox[
+              DynamicBox[
+               ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+                StandardForm]], DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}, StripOnInput -> False]],
+            Annotation[#, 
+             Style[
+              Dynamic[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+              DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}], "Tooltip"]& ],
+           Alignment->Center,
+           BaselinePosition->Baseline,
+           ImageSize->{Automatic, {25, Full}}], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 95, 16054203547815041110, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 95, 16054203547815041110, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 95, 16054203547815041110, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[16054203547815041110 === $SessionID, 
+   Out[95], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{3.750577988287231*^9, 3.774094332501861*^9, 
+  3.7740950290369577`*^9, 3.775039359026741*^9, 3.7772842215123377`*^9, 
+  3.77736481081329*^9},
+ CellLabel->"Out[95]=",ExpressionUUID->"c356c43e-0940-41fa-a499-e07790ae583a"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<a2Sol.m\>\"", ",", "a2Sol"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.774155903456094*^9, 3.7741559100005703`*^9}},
+ CellLabel->"In[96]:=",ExpressionUUID->"d336dda5-5b10-45e9-b360-ef0d51539e59"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"a3Sol", "=", 
+  RowBox[{"SolutionA", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "3", ",", "2"}], "]"}], "]"}]}]], "Input",
+ CellLabel->"In[97]:=",ExpressionUUID->"6466bbcb-12ea-4e67-9629-9da5293b344e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                InterpretationBox[
+                 TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-3.30\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["3", "2"]}], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "2"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-3.302775637731995},
+                  "NumericalApproximation"],
+                 AlgebraicNumber[13^Rational[1, 2], {
+                   Rational[-3, 2], 
+                   Rational[-1, 2]}]], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  FractionBox[
+                   InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"3.30\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["3", "2"], ",", 
+                    FractionBox["1", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    3.302775637731995},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[3, 2], 
+                    Rational[1, 2]}]], 
+                   SqrtBox["3"]], "-", 
+                  RowBox[{"\[ImaginaryI]", " ", 
+                   SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"1.70\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["7", "2"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "2"]}]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    1.6972243622680054`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[7, 2], 
+                    Rational[-1, 2]}]]]}]}], ")"}], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  FractionBox[
+                   RowBox[{"4", " ", "b2", " ", "c1", " ", "d1"}], 
+                   SqrtBox["3"]], "+", 
+                  FractionBox[
+                   RowBox[{"4", " ", "b4", " ", "c1", " ", "d1"}], 
+                   SqrtBox["3"]], "+", 
+                  FractionBox[
+                   RowBox[{"b3", " ", "c4", " ", "d3", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                   SqrtBox["3"]], "+", 
+                  TemplateBox[{"152"},
+                   "OutputSizeLimit`Skeleton"], "+", 
+                  RowBox[{"b2", " ", "c1", " ", "d1", " ", 
+                   InterpretationBox[
+                    
+                    TemplateBox[{
+                    "AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.5351837584879964},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[2, 3], 
+                    Rational[-1, 3]}]], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                  RowBox[{"b4", " ", "c1", " ", "d1", " ", 
+                   InterpretationBox[
+                    
+                    TemplateBox[{
+                    "AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.5351837584879964},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[2, 3], 
+                    Rational[-1, 3]}]], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                  RowBox[{"b3", " ", "c1", " ", "d1", " ", 
+                   InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.286\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["17", "9"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["4", "9"]}]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    0.28642165534933817`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[17, 9], 
+                    Rational[-4, 9]}]], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}]}], ")"}]}], "+", 
+               FractionBox[
+                TemplateBox[{"1"},
+                 "OutputSizeLimit`Skeleton"], 
+                SqrtBox["3"]]}], ")"}], "/", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  FractionBox[
+                   RowBox[{"b4", " ", "c4", " ", "d3", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                   SqrtBox["3"]], "+", 
+                  FractionBox[
+                   RowBox[{"b4", " ", "c3", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.204\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "81"]}], ",", 
+                    FractionBox["100", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.20438429069628286`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-344, 81], 
+                    Rational[100, 81]}]]}], 
+                   SqrtBox["3"]], "+", 
+                  FractionBox[
+                   RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0888\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["274", "81"]}], ",", 
+                    FractionBox["74", "81"]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.08875562488475068},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-274, 81], 
+                    Rational[74, 81]}]]}], 
+                   SqrtBox["3"]], "+", 
+                  TemplateBox[{"152"},
+                   "OutputSizeLimit`Skeleton"], "+", 
+                  RowBox[{"b4", " ", "c4", " ", "d3", " ", 
+                   InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"7.40\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]], 
+                    "\"\[ThinSpace]\[Times]\[ThinSpace]\"", 
+                    
+                    TemplateBox[{"\"10\"", "\"-3\""}, "Superscript", 
+                    SyntaxForm -> SuperscriptBox]}, "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["137", "486"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["37", "486"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],0.007396302073729223},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[137, 486], 
+                    Rational[-37, 486]}]], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                  RowBox[{"b4", " ", "c4", " ", "d4", " ", 
+                   InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.0170\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["86", "243"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["25", "243"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.01703202422469024},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[86, 243], 
+                    Rational[-25, 243]}]], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+                  RowBox[{"b2", " ", "c2", " ", "d4", " ", 
+                   InterpretationBox[
+                    
+                    TemplateBox[{
+                    "AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-0.5351837584879964},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[2, 3], 
+                    Rational[-1, 3]}]], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                    SqrtBox[
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}]}], ")"}], " ", 
+                RowBox[{"(", 
+                 TemplateBox[{"1"},
+                  "OutputSizeLimit`Skeleton"], ")"}]}], "-", 
+               TemplateBox[{"1"},
+                "OutputSizeLimit`Skeleton"]}], ")"}]}], ")"}]}], "+", 
+          FractionBox[
+           TemplateBox[{"1"},
+            "OutputSizeLimit`Skeleton"], 
+           TemplateBox[{"1"},
+            "OutputSizeLimit`Skeleton"]], "+", 
+          FractionBox[
+           TemplateBox[{"1"},
+            "OutputSizeLimit`Skeleton"], 
+           RowBox[{
+            TemplateBox[{"1"},
+             "OutputSizeLimit`Skeleton"], "-", 
+            TemplateBox[{"1"},
+             "OutputSizeLimit`Skeleton"]}]]}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          PaneBox[
+           TagBox[
+            TooltipBox[
+             StyleBox[
+              StyleBox[
+               DynamicBox[ToBoxes[
+                 FEPrivate`FrontEndResource[
+                 "FEStrings", "sizeBriefExplanation"], StandardForm],
+                ImageSizeCache->{58., {2., 8.}}],
+               StripOnInput->False,
+               DynamicUpdating->True,
+               LineSpacing->{1, 2},
+               LineIndent->0,
+               LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLText",
+              StripOnInput->False],
+             StyleBox[
+              DynamicBox[
+               ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+                StandardForm]], DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}, StripOnInput -> False]],
+            Annotation[#, 
+             Style[
+              Dynamic[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+              DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}], "Tooltip"]& ],
+           Alignment->Center,
+           BaselinePosition->Baseline,
+           ImageSize->{Automatic, {25, Full}}], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 97, 16054203547815041110, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 97, 16054203547815041110, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 97, 16054203547815041110, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[16054203547815041110 === $SessionID, 
+   Out[97], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{3.750577989022073*^9, 3.774094344291129*^9, 
+  3.774095062214373*^9, 3.775039392771641*^9, 3.777284255296249*^9, 
+  3.777364845222273*^9},
+ CellLabel->"Out[97]=",ExpressionUUID->"745d79a0-a13b-496f-bbae-3b4efdd1c11c"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<a3Sol.m\>\"", ",", "a3Sol"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.7741559173103*^9, 3.774155921070139*^9}},
+ CellLabel->"In[98]:=",ExpressionUUID->"c7c78fbd-f71c-45d1-b0f9-b3a51940e3ba"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"a4Sol", "=", 
+  RowBox[{"SolutionA", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "4", ",", "2"}], "]"}], "]"}]}]], "Input",
+ CellLabel->"In[99]:=",ExpressionUUID->"0c8c8c9f-bca3-45ea-a295-d43dbdb66101"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             SqrtBox["3"], " ", 
+             InterpretationBox[
+              TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"4.40\"", 
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "FEExpressions", "NumericalApproximationElider"]]}, 
+                 "RowDefault"],TagBox[
+                 RowBox[{"AlgebraicNumber", "[", 
+                   RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", 
+                    FractionBox["2", "3"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                4.403700850309326},
+               "NumericalApproximation"],
+              AlgebraicNumber[13^Rational[1, 2], {2, 
+                Rational[2, 3]}]]}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{
+             FractionBox[
+              RowBox[{"4", " ", "b2", " ", "c1", " ", "d1"}], 
+              SqrtBox["3"]], "+", 
+             FractionBox[
+              RowBox[{"4", " ", "b4", " ", "c1", " ", "d1"}], 
+              SqrtBox["3"]], "+", 
+             RowBox[{
+              SqrtBox["3"], " ", "b3", " ", "c4", " ", "d3", " ", 
+              InterpretationBox[
+               TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.0681\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"],TagBox[
+                  RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "243"]}], ",", 
+                    FractionBox["100", "243"]}], "}"}]}], "]"}], 
+                  Short[#, 7]& ],0.06812809689876095},
+                "NumericalApproximation"],
+               AlgebraicNumber[13^Rational[1, 2], {
+                 Rational[-344, 243], 
+                 Rational[100, 243]}]]}], "+", 
+             RowBox[{
+              SqrtBox["3"], " ", "b3", " ", "c3", " ", "d4", " ", 
+              InterpretationBox[
+               TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.0681\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"],TagBox[
+                  RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["344", "243"]}], ",", 
+                    FractionBox["100", "243"]}], "}"}]}], "]"}], 
+                  Short[#, 7]& ],0.06812809689876095},
+                "NumericalApproximation"],
+               AlgebraicNumber[13^Rational[1, 2], {
+                 Rational[-344, 243], 
+                 Rational[100, 243]}]]}], "+", 
+             TemplateBox[{"151"},
+              "OutputSizeLimit`Skeleton"], "+", 
+             RowBox[{"b2", " ", "c1", " ", "d1", " ", 
+              InterpretationBox[
+               TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"],TagBox[
+                  RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                  Short[#, 7]& ],-0.5351837584879964},
+                "NumericalApproximation"],
+               AlgebraicNumber[13^Rational[1, 2], {
+                 Rational[2, 3], 
+                 Rational[-1, 3]}]], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 SqrtBox["3"], " ", 
+                 InterpretationBox[
+                  TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                   "NumericalApproximation"],
+                  AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                 SqrtBox[
+                  InterpretationBox[
+                   TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                   AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+             RowBox[{"b4", " ", "c1", " ", "d1", " ", 
+              InterpretationBox[
+               TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-0.535\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"],TagBox[
+                  RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["2", "3"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "3"]}]}], "}"}]}], "]"}], 
+                  Short[#, 7]& ],-0.5351837584879964},
+                "NumericalApproximation"],
+               AlgebraicNumber[13^Rational[1, 2], {
+                 Rational[2, 3], 
+                 Rational[-1, 3]}]], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 SqrtBox["3"], " ", 
+                 InterpretationBox[
+                  TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                   "NumericalApproximation"],
+                  AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                 SqrtBox[
+                  InterpretationBox[
+                   TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                   AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}], "+", 
+             RowBox[{"b3", " ", "c1", " ", "d1", " ", 
+              InterpretationBox[
+               TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"0.286\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"],TagBox[
+                  RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["17", "9"], ",", 
+                    RowBox[{"-", 
+                    FractionBox["4", "9"]}]}], "}"}]}], "]"}], Short[#, 7]& ],
+                 0.28642165534933817`},
+                "NumericalApproximation"],
+               AlgebraicNumber[13^Rational[1, 2], {
+                 Rational[17, 9], 
+                 Rational[-4, 9]}]], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 SqrtBox["3"], " ", 
+                 InterpretationBox[
+                  TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                   "NumericalApproximation"],
+                  AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+                 SqrtBox[
+                  InterpretationBox[
+                   TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"18.5\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    FractionBox["19", "2"], ",", 
+                    FractionBox["5", "2"]}], "}"}]}], "]"}], Short[#, 7]& ],
+                    18.513878188659973`},
+                    "NumericalApproximation"],
+                   AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[19, 2], 
+                    Rational[5, 2]}]]]}]}], ")"}]}]}], ")"}]}], "+", 
+          FractionBox[
+           TemplateBox[{"1"},
+            "OutputSizeLimit`Skeleton"], 
+           TemplateBox[{"1"},
+            "OutputSizeLimit`Skeleton"]], "+", 
+          TemplateBox[{"1"},
+           "OutputSizeLimit`Skeleton"], "+", 
+          FractionBox[
+           RowBox[{
+            RowBox[{"(", 
+             TemplateBox[{"1"},
+              "OutputSizeLimit`Skeleton"], ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], ")"}], " ", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-3.30\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["3", "2"]}], ",", 
+                    RowBox[{"-", 
+                    FractionBox["1", "2"]}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-3.302775637731995},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {
+                    Rational[-3, 2], 
+                    Rational[-1, 2]}]], " ", 
+                    RowBox[{"(", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], ")"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SqrtBox["3"], " ", 
+                    InterpretationBox[
+                    TemplateBox[{"AlgebraicNumber",TemplateBox[{"\"-8.61\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"],TagBox[
+                    RowBox[{"AlgebraicNumber", "[", 
+                    RowBox[{
+                    SqrtBox["13"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+                    Short[#, 7]& ],-8.60555127546399},
+                    "NumericalApproximation"],
+                    AlgebraicNumber[13^Rational[1, 2], {-5, -1}]]}], "+", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}]}], "+", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}]}], "-", 
+                 TemplateBox[{"1"},
+                  "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+               RowBox[{"(", 
+                TemplateBox[{"1"},
+                 "OutputSizeLimit`Skeleton"], ")"}]}], "-", 
+              TemplateBox[{"1"},
+               "OutputSizeLimit`Skeleton"]}], ")"}]}], 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", 
+                 RowBox[{"(", 
+                  TemplateBox[{"1"},
+                   "OutputSizeLimit`Skeleton"], ")"}]}], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"4", " ", "b2", " ", "c1", " ", "d1"}], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"157"},
+                    "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], 
+                    SqrtBox["3"]], "+", 
+                    TemplateBox[{"205"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    FractionBox[
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], 
+                    SqrtBox["3"]]}], ")"}]}], "-", 
+                  TemplateBox[{"1"},
+                   "OutputSizeLimit`Skeleton"]}], ")"}]}], "+", 
+               TemplateBox[{"1"},
+                "OutputSizeLimit`Skeleton"]}], ")"}], " ", 
+             RowBox[{"(", 
+              TemplateBox[{"1"},
+               "OutputSizeLimit`Skeleton"], ")"}]}], "-", 
+            TemplateBox[{"1"},
+             "OutputSizeLimit`Skeleton"]}]]}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          PaneBox[
+           TagBox[
+            TooltipBox[
+             StyleBox[
+              StyleBox[
+               DynamicBox[ToBoxes[
+                 FEPrivate`FrontEndResource[
+                 "FEStrings", "sizeBriefExplanation"], StandardForm],
+                ImageSizeCache->{58., {2., 8.}}],
+               StripOnInput->False,
+               DynamicUpdating->True,
+               LineSpacing->{1, 2},
+               LineIndent->0,
+               LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLText",
+              StripOnInput->False],
+             StyleBox[
+              DynamicBox[
+               ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+                StandardForm]], DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}, StripOnInput -> False]],
+            Annotation[#, 
+             Style[
+              Dynamic[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+              DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}], "Tooltip"]& ],
+           Alignment->Center,
+           BaselinePosition->Baseline,
+           ImageSize->{Automatic, {25, Full}}], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 99, 16054203547815041110, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 99, 16054203547815041110, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 99, 16054203547815041110, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[16054203547815041110 === $SessionID, 
+   Out[99], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{3.7505779897381477`*^9, 3.7740943568092213`*^9, 
+  3.774095094957786*^9, 3.775039426651071*^9, 3.77728429108967*^9, 
+  3.7773648791997833`*^9},
+ CellLabel->"Out[99]=",ExpressionUUID->"961bf235-32dc-4b0b-93f8-b1d7e49fc8c5"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<a4Sol.m\>\"", ",", "a4Sol"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.7741559323062687`*^9, 3.774155935084365*^9}},
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"4da3be6c-f4e2-4db8-9d94-38c41253371e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculate the case Tangle3 = Tangle1", "Section",
+ CellChangeTimes->{
+  3.750577648177515*^9},ExpressionUUID->"423e7720-c13b-41fd-b649-\
+338c5404bfd1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Definition", " ", "of", " ", "the", " ", "case", " ", "where", " ", 
+    "tangle", " ", "intersects", " ", "3", " ", "legs"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Tangle3", "=", 
+    RowBox[{"ReduceDiagram", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"DiagramTensor", "[", 
+         RowBox[{"OpA", ",", 
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"DiagramTensor", "[", 
+           RowBox[{
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", "OpT", ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"DiagramTensor", "[", 
+             RowBox[{"OpB", ",", "OpC"}], "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"DiagramTensor", "[", 
+             RowBox[{
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+              RowBox[{"Retrieve", "[", "\"\<Cap\>\"", "]"}], ",", 
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}]}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+       "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"b", "\[Rule]", "bigon"}], ",", 
+        RowBox[{"t", "\[Rule]", " ", "triangle"}], ",", 
+        RowBox[{"d", "\[Rule]", " ", "loop"}]}], "}"}]}], "]"}]}], 
+   ";"}]}]], "Input",
+ CellChangeTimes->{{3.750577661517654*^9, 3.7505776817028418`*^9}, {
+  3.7740946776675*^9, 3.774094680185617*^9}, {3.774094792658609*^9, 
+  3.774094794927928*^9}},
+ CellLabel->"In[50]:=",ExpressionUUID->"129f36a5-ca96-4f12-8194-f4607fd85801"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Definition", " ", "of", " ", "the", " ", "case", " ", "where", " ", 
+    "tangle", " ", "intersects", " ", "1", " ", "leg"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Tangle1", "=", 
+    RowBox[{"ReduceDiagram", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"DiagramTensor", "[", 
+         RowBox[{
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", "OpD", ",", 
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"DiagramTensor", "[", 
+           RowBox[{"OpT", ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"DiagramTensor", "[", 
+           RowBox[{
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+            RowBox[{"Retrieve", "[", "\"\<Cap\>\"", "]"}]}], "]"}]}], 
+         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], 
+      "\[IndentingNewLine]", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"b", "\[Rule]", "bigon"}], ",", 
+        RowBox[{"t", "\[Rule]", " ", "triangle"}], ",", 
+        RowBox[{"d", "\[Rule]", " ", "loop"}]}], "}"}]}], "]"}]}], 
+   ";"}]}]], "Input",
+ CellChangeTimes->{{3.750577696408711*^9, 3.7505776999815493`*^9}, {
+  3.774094669252438*^9, 3.774094672625575*^9}, {3.774094785562105*^9, 
+  3.774094787389455*^9}},
+ CellLabel->"In[51]:=",ExpressionUUID->"d73df2b3-7dce-479a-86f8-c170ea7cf2e6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Calculate", " ", "solution"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"T1Comp", "=", 
+     RowBox[{
+      RowBox[{"Components", "[", 
+       RowBox[{
+        RowBox[{"ReplaceKernDiagrams", "[", "Tangle1", "]"}], ",", 
+        RowBox[{"DiagramsMoveAllDown", "[", 
+         RowBox[{"C6Basis", ",", "4"}], "]"}]}], "]"}], "/.", 
+      RowBox[{"d", "\[Rule]", "loop"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"T3Comp", "=", 
+     RowBox[{
+      RowBox[{"Components", "[", 
+       RowBox[{
+        RowBox[{"ReplaceKernDiagrams", "[", "Tangle3", "]"}], ",", 
+        RowBox[{"DiagramsMoveAllDown", "[", 
+         RowBox[{"C6Basis", ",", "4"}], "]"}]}], "]"}], "/.", 
+      RowBox[{"d", "\[Rule]", "loop"}]}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.750577731290243*^9, 3.750577737500978*^9}, {
+  3.7740948131978397`*^9, 3.774094816038903*^9}, {3.774094851557454*^9, 
+  3.774094866101048*^9}},
+ CellLabel->"In[52]:=",ExpressionUUID->"62550e1b-eee8-4037-8382-be8248d8a6c0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"T3Comp", "=", 
+   RowBox[{"Simplify", "[", "T3Comp", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T3Comp", "=", 
+   RowBox[{"FullSimplify", "[", "T3Comp", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.751187710926355*^9, 3.751187732311515*^9}},
+ CellLabel->"In[54]:=",ExpressionUUID->"d7c7f157-544a-47f0-b5e2-67d094ebb8dc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<T1Comp_Trep.m\>\"", ",", "T1Comp"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<T3Comp_simpl_Trep.m\>\"", ",", "T3Comp"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.774095311733836*^9, 3.774095354053644*^9}, {
+  3.7741551482827187`*^9, 3.774155153744144*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"fb884808-1ae6-4991-8b46-b3a6df7c5225"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"T1Comp", "\[Equal]", "T3Comp"}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"a1", "\[Rule]", "a1Sol"}], "//", "N"}], ",", 
+      RowBox[{
+       RowBox[{"a2", "\[Rule]", "a2Sol"}], "//", "N"}], ",", 
+      RowBox[{
+       RowBox[{"a3", "\[Rule]", "a3Sol"}], "//", "N"}], ",", 
+      RowBox[{
+       RowBox[{"a4", "\[Rule]", "a4Sol"}], "//", "N"}]}], "}"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "b1", ",", "b2", ",", "b3", ",", "b4", ",", "c1", ",", "c2", ",", "c3", 
+     ",", "c4", ",", "d1", ",", "d2", ",", "d3", ",", "d4"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.75058805532747*^9, 3.7505880568172903`*^9}, {
+  3.750588132615985*^9, 3.7505881327256613`*^9}, {3.750594850064949*^9, 
+  3.750594867994563*^9}, {3.7741560330978737`*^9, 3.774156056171068*^9}},
+ CellLabel->"In[58]:=",ExpressionUUID->"d15f180e-081b-4201-86f2-d493e62a8d99"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.750578086015305*^9, 3.774156172957169*^9, 
+  3.777286973659474*^9},
+ CellLabel->"Out[58]=",ExpressionUUID->"25beccdb-f003-4e57-a20c-38cbc9728d10"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculate the case Tangle2AD = Tangle2BC", "Section",
+ CellChangeTimes->{
+  3.750577761806507*^9},ExpressionUUID->"78bf1c5e-9e67-45be-a095-\
+2b60847f8d5c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Definition", " ", "of", " ", "the", " ", "case", " ", "where", " ", 
+    "tangle", " ", "intersects", " ", "the", " ", "2", " ", "lower", " ", 
+    "legs"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Tangle2AD", "=", 
+    RowBox[{"ReduceDiagram", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"DiagramTensor", "[", 
+         RowBox[{
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Cup\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"DiagramTensor", "[", 
+           RowBox[{"OpA", ",", "OpD"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"DiagramTensor", "[", 
+           RowBox[{
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", "OpT", ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}]}], 
+         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], 
+      "\[IndentingNewLine]", ",", 
+      RowBox[{"b", "\[Rule]", "bigon"}], ",", 
+      RowBox[{"d", "\[Rule]", " ", "loop"}], ",", 
+      RowBox[{"t", "\[Rule]", " ", "triangle"}]}], "]"}]}], ";"}]}]], "Input",\
+
+ CellChangeTimes->{{3.750577789391038*^9, 3.750577803717472*^9}, 
+   3.7505780583443604`*^9, 3.751627577576672*^9},
+ CellLabel->"In[59]:=",ExpressionUUID->"1b6cb338-1ed1-4673-8485-f9e15758f433"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Definition", " ", "of", " ", "the", " ", "case", " ", "where", " ", 
+    "tangle", " ", "intersects", " ", "the", " ", "2", " ", "upper", " ", 
+    "legs"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Tangle2BC", "=", 
+    RowBox[{"ReduceDiagram", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"DiagramTensor", "[", 
+         RowBox[{
+          RowBox[{"Retrieve", "[", "\"\<Cup\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+          RowBox[{"Retrieve", "[", "\"\<Cup\>\"", "]"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"DiagramTensor", "[", 
+           RowBox[{
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", "OpT", ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+            RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"DiagramCompose", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"DiagramTensor", "[", 
+             RowBox[{
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", "OpB", ",",
+               "OpC", ",", 
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"DiagramTensor", "[", 
+             RowBox[{
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+              RowBox[{"Retrieve", "[", "\"\<Cap\>\"", "]"}], ",", 
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}], ",", 
+              RowBox[{"Retrieve", "[", "\"\<Line\>\"", "]"}]}], "]"}]}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+       "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+      RowBox[{"b", "\[Rule]", "bigon"}], ",", 
+      RowBox[{"d", "\[Rule]", " ", "loop"}], ",", 
+      RowBox[{"t", "\[Rule]", " ", "triangle"}]}], "]"}]}], ";"}]}]], "Input",\
+
+ CellChangeTimes->{{3.750577809164694*^9, 3.75057781369903*^9}, 
+   3.75057806119172*^9, 3.751627582447774*^9},
+ CellLabel->"In[60]:=",ExpressionUUID->"954345af-c657-4a6e-872d-25b83bc6c594"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Calculate", " ", "solution"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"T2ADComp", "=", 
+     RowBox[{
+      RowBox[{"Components", "[", 
+       RowBox[{
+        RowBox[{"ReplaceKernDiagrams", "[", "Tangle2AD", "]"}], ",", 
+        RowBox[{"DiagramsMoveAllDown", "[", 
+         RowBox[{"C6Basis", ",", "2"}], "]"}]}], "]"}], "/.", 
+      RowBox[{"d", "\[Rule]", "loop"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"T2BCComp", "=", 
+     RowBox[{
+      RowBox[{"Components", "[", 
+       RowBox[{
+        RowBox[{"ReplaceKernDiagrams", "[", "Tangle2BC", "]"}], ",", 
+        RowBox[{"DiagramsMoveAllDown", "[", 
+         RowBox[{"C6Basis", ",", "2"}], "]"}]}], "]"}], "/.", 
+      RowBox[{"d", "\[Rule]", "loop"}]}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.750577832985654*^9, 3.750577840117962*^9}, {
+  3.774095385296906*^9, 3.774095396939167*^9}},
+ CellLabel->"In[61]:=",ExpressionUUID->"9f91bc0b-0b8b-4d4c-a2e0-27e4dc5d273d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"T2ADComp", "=", 
+   RowBox[{"Simplify", "[", "T2ADComp", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T2ADComp", "=", 
+   RowBox[{"FullSimplify", "[", "T2ADComp", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T2BCComp", "=", 
+   RowBox[{"Simplify", "[", "T2BCComp", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T2BCComp", "=", 
+   RowBox[{"FullSimplify", "[", "T2BCComp", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.751622633370509*^9, 3.7516226700372753`*^9}},
+ CellLabel->"In[63]:=",ExpressionUUID->"d70fc4b8-827c-4cde-aa1d-3d40b6889f93"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<T2ADComp_Trep.m\>\"", ",", "T2ADComp"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<T2BCComp_Trep.m\>\"", ",", "T2BCComp"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.774155650175809*^9, 3.7741556754637203`*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"09d7c056-3878-40e7-b314-ddaaf8fc0ada"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"T2ADComp", "\[Equal]", "T2BCComp"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b1", ",", "b2", ",", "b3", ",", "b4"}], "}"}]}], "]"}]], "Input",\
+
+ CellLabel->
+  "In[198]:=",ExpressionUUID->"d0623c82-d14b-48f0-baea-60766153024f"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellChangeTimes->{3.750578113408269*^9},
+ CellLabel->
+  "Out[198]=",ExpressionUUID->"14fa0f78-45d6-4464-9d3d-b1202e524a19"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculate whether there is a solution to the equations", "Section",
+ CellChangeTimes->{{3.751628124615803*^9, 
+  3.751628138042656*^9}},ExpressionUUID->"eea75140-9b1d-49cf-93be-\
+a00ed865aa48"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Import", " ", "files", " ", "in", " ", "case", " ", "you", " ", "do", " ",
+     "not", " ", "want", " ", "to", " ", "calculate", " ", "the", " ", "code",
+     " ", "before"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"T3Comp", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+         "\"\<T3Comp_Simplified.m\>\""}], "}"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"T1Comp", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<T1Comp.m\>\""}], 
+        "}"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"T2ADComp", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<T2ADComp.m\>\""}],
+         "}"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"T2BCComp", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<T2BCComp.m\>\""}],
+         "}"}], "]"}], "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.7514481422534647`*^9, 3.751448154918022*^9}, 
+   3.751620409876371*^9, {3.751620659951161*^9, 3.751620668711486*^9}, {
+   3.751627387035932*^9, 3.751627405885944*^9}, {3.751628141575655*^9, 
+   3.751628169422985*^9}},
+ CellLabel->"In[69]:=",ExpressionUUID->"effd0e48-6c03-4b5c-8980-5ae3b6d9ad79"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Function", " ", "which", " ", "checks", " ", "one", " ", "specific", 
+     " ", "\"\<Component\>\"", " ", "of", " ", "TxComp", " ", "and", " ", 
+     "searches", " ", "for", " ", "the", " ", "pre"}], "-", 
+    RowBox[{
+    "factor", " ", "of", " ", "\"\<Wert\>\"", " ", "in", " ", "this", " ", 
+     "specific", " ", "Component"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Search", "[", 
+    RowBox[{"Tangle_", ",", "Wert_", ",", "Component_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "iList", ",", "iListString", ",", "MatrixEntry", ",", "Val", ",", 
+       "iListj", ",", "c", ",", "Header"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Header", "=", 
+       RowBox[{"Head", "[", 
+        RowBox[{"ExpandAll", "[", 
+         RowBox[{"Tangle", "[", 
+          RowBox[{"[", "Component", "]"}], "]"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Header", "===", "Plus"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"iList", "=", 
+         RowBox[{"List", "@@", 
+          RowBox[{"ExpandAll", "[", 
+           RowBox[{"Tangle", "[", 
+            RowBox[{"[", "Component", "]"}], "]"}], "]"}]}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"iList", "=", 
+         RowBox[{"{", 
+          RowBox[{"Tangle", "[", 
+           RowBox[{"[", "Component", "]"}], "]"}], "}"}]}]}], 
+       "\[IndentingNewLine]", "]"}], ";", 
+      RowBox[{"(*", "If", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"MatrixEntry", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"j", "=", "1"}], ",", 
+        RowBox[{"j", "\[LessEqual]", 
+         RowBox[{"Length", "[", "iList", "]"}]}], ",", 
+        RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"iListj", "=", 
+          RowBox[{"ExpandAll", "[", 
+           RowBox[{"iList", "[", 
+            RowBox[{"[", "j", "]"}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"StringContainsQ", "[", 
+             RowBox[{
+              RowBox[{"ToString", "[", "iListj", "]"}], ",", 
+              RowBox[{"ToString", "[", "Wert", "]"}]}], "]"}], "\[Equal]", 
+            "True"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"StringContainsQ", "[", 
+              RowBox[{
+               RowBox[{"ToString", "[", "iListj", "]"}], ",", "\"\<--\>\""}], 
+              "]"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Val", "=", 
+               RowBox[{
+                RowBox[{"iListj", "//", 
+                 RowBox[{
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"#", ",", "InputForm"}], "]"}], "&"}]}], "//", 
+                RowBox[{
+                 RowBox[{"StringReplace", "[", 
+                  RowBox[{"#", ",", 
+                   RowBox[{"\"\</\>\"", "\[RuleDelayed]", "\"\<--\>\""}]}], 
+                  "]"}], "&"}]}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"Val", "=", 
+               RowBox[{"StringDelete", "[", 
+                RowBox[{"Val", ",", 
+                 RowBox[{
+                  RowBox[{"ToString", "[", "Wert", "]"}], "<>", 
+                  "\"\<*\>\""}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"Val", "=", 
+               RowBox[{
+                RowBox[{"Val", "//", 
+                 RowBox[{
+                  RowBox[{"StringReplace", "[", 
+                   RowBox[{"#", ",", 
+                    RowBox[{"\"\<--\>\"", "\[RuleDelayed]", "\"\</\>\""}]}], 
+                   "]"}], "&"}]}], "//", 
+                RowBox[{
+                 RowBox[{"ToExpression", "[", 
+                  RowBox[{"#", ",", "InputForm"}], "]"}], "&"}]}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"MatrixEntry", "=", 
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"MatrixEntry", ",", "Val"}], "]"}]}]}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Val", "=", 
+               RowBox[{"StringDelete", "[", 
+                RowBox[{
+                 RowBox[{"ToString", "[", 
+                  RowBox[{"iList", "[", 
+                   RowBox[{"[", "j", "]"}], "]"}], "]"}], ",", 
+                 RowBox[{"ToString", "[", "Wert", "]"}]}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Val", "=", 
+               RowBox[{"ToExpression", "[", "Val", "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"MatrixEntry", "=", 
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"MatrixEntry", ",", "Val"}], "]"}]}], ";"}]}], 
+            "\[IndentingNewLine]", "]"}], 
+           RowBox[{"(*", "If", "*)"}], "\[IndentingNewLine]", ",", 
+           RowBox[{"MatrixEntry", "=", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"MatrixEntry", ",", "0"}], "]"}]}]}], "]"}]}]}], 
+       RowBox[{"(*", "If", "*)"}], "\[IndentingNewLine]", "]"}], ";", 
+      RowBox[{"(*", "For", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"Header", "===", "Integer"}], ",", 
+        RowBox[{"MatrixEntry", "=", "0"}], ",", 
+        RowBox[{"MatrixEntry", "=", 
+         RowBox[{"Header", "@@", "MatrixEntry"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "MatrixEntry", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}], 
+   RowBox[{"(*", "Module", "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.751025080176894*^9, 3.75102512992343*^9}, {
+   3.751025323437011*^9, 3.751025362380756*^9}, {3.751025396424263*^9, 
+   3.7510258138888702`*^9}, {3.751025844899417*^9, 3.75102584730338*^9}, {
+   3.751026005691202*^9, 3.7510260539813633`*^9}, {3.751026120805923*^9, 
+   3.751026166913106*^9}, {3.751026241014492*^9, 3.751026242620715*^9}, {
+   3.751027474916882*^9, 3.751027541808457*^9}, {3.751027582028452*^9, 
+   3.751027589237739*^9}, {3.751027694933812*^9, 3.7510277063713007`*^9}, {
+   3.7510277557523212`*^9, 3.75102782479547*^9}, {3.751028064187481*^9, 
+   3.7510281476201363`*^9}, {3.7510281834125347`*^9, 3.751028186363721*^9}, {
+   3.751028273944848*^9, 3.751028277530177*^9}, {3.751028426398417*^9, 
+   3.751028464929554*^9}, {3.7510285034128733`*^9, 3.7510285103115463`*^9}, {
+   3.751028646874905*^9, 3.751028647337555*^9}, {3.751028689877398*^9, 
+   3.751028690639524*^9}, {3.751028754894627*^9, 3.7510287599474983`*^9}, {
+   3.751028925350198*^9, 3.751028935973062*^9}, {3.7510290550789547`*^9, 
+   3.751029069932043*^9}, {3.75102935420158*^9, 3.751029395046708*^9}, {
+   3.751090354586282*^9, 3.751090360570078*^9}, {3.7510907645113363`*^9, 
+   3.751090860080715*^9}, {3.7510909784778748`*^9, 3.75109102854508*^9}, {
+   3.751091065574428*^9, 3.751091129056282*^9}, {3.751091195353788*^9, 
+   3.7510913183894777`*^9}, {3.751092266786034*^9, 3.7510923348580227`*^9}, {
+   3.7510924638777027`*^9, 3.751092523273234*^9}, {3.7510925675393476`*^9, 
+   3.7510925684588957`*^9}, 3.7510926042390203`*^9, {3.7510926555586767`*^9, 
+   3.751092697056398*^9}, {3.7510927439552393`*^9, 3.751092744979459*^9}, {
+   3.75109287809844*^9, 3.7510930189268093`*^9}, {3.751093141229835*^9, 
+   3.75109314321546*^9}, {3.751093196448386*^9, 3.7510931979719973`*^9}, 
+   3.7510937336561193`*^9, {3.751187892436233*^9, 3.751188040723391*^9}, {
+   3.751190799931468*^9, 3.7511908194151573`*^9}, {3.751196459183036*^9, 
+   3.7511965269728622`*^9}, {3.751448409950547*^9, 3.751448412335432*^9}, {
+   3.751621412938148*^9, 3.751621417287771*^9}, {3.751621512882832*^9, 
+   3.751621536156619*^9}, {3.751621724979169*^9, 3.7516217456924973`*^9}, {
+   3.751621785317924*^9, 3.7516218354513063`*^9}, 3.751621876971478*^9, {
+   3.7516281733356256`*^9, 3.751628307517405*^9}},
+ CellLabel->"In[73]:=",ExpressionUUID->"6192a80d-04eb-4a0b-8933-3e5302e3a6d4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Funcion", " ", "which", " ", "gives", " ", "out", " ", "every", " ", 
+     "non"}], "-", 
+    RowBox[{"numerical", " ", "parameter", " ", "in", " ", "TxComp"}]}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Parameters", "[", "Tangle_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "DummieList", ",", "ComponentList", ",", "VariableList", ",", "i"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"Find", " ", "out", " ", "occuring", " ", "variables"}], "*)"}],
+      "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"DummieList", "=", 
+       RowBox[{"List", "@@", 
+        RowBox[{"ExpandAll", "[", 
+         RowBox[{"Plus", "@@", "Tangle"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ComponentList", "=", 
+       RowBox[{"List", "@@", 
+        RowBox[{"Times", "@@", 
+         RowBox[{"Sum", "[", 
+          RowBox[{
+           RowBox[{"Plus", "@@", 
+            RowBox[{"DummieList", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", 
+             RowBox[{"Length", "[", "DummieList", "]"}]}], "}"}]}], 
+          "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"VariableList", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", 
+         RowBox[{"Length", "[", "ComponentList", "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Head", "[", 
+            RowBox[{"ComponentList", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}], "\[Equal]", "Symbol"}], 
+          ",", 
+          RowBox[{"VariableList", "=", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"VariableList", ",", 
+             RowBox[{"ComponentList", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}]}], 
+         "\[IndentingNewLine]", "]"}]}], 
+       RowBox[{"(*", "If", "*)"}], "\[IndentingNewLine]", "]"}], 
+      RowBox[{"(*", "For", "*)"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "VariableList", "]"}]}]}], "\[IndentingNewLine]",
+     "]"}], 
+   RowBox[{"(*", "Module", "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.751196752165798*^9, 3.751196791651969*^9}, {
+  3.751197008624981*^9, 3.751197013649295*^9}, {3.751199527067397*^9, 
+  3.7511996294796352`*^9}, {3.7511997093001337`*^9, 3.751199785959414*^9}, {
+  3.75119983905871*^9, 3.75119995931637*^9}, {3.751200010628675*^9, 
+  3.75120009629144*^9}, {3.751200360777899*^9, 3.75120036438459*^9}, {
+  3.751200631663876*^9, 3.751200631836709*^9}, {3.7512010546517153`*^9, 
+  3.751201055379777*^9}, {3.751201189214397*^9, 3.75120119712846*^9}, {
+  3.751201249724758*^9, 3.751201343391868*^9}, {3.75161658682714*^9, 
+  3.751616599390263*^9}, {3.751628319303289*^9, 3.751628368815815*^9}},
+ CellLabel->"In[74]:=",ExpressionUUID->"f0d0f3b2-b98b-4291-af6b-e55c880bc9f6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Creates", " ", "matrix", " ", "for", " ", "system", " ", "of", " ", 
+    "linear", " ", "equations", " ", "out", " ", "of", " ", "a", " ", 
+    "vector"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"LinEqMatrix", "[", "Tangle_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "VariableList", ",", "EntryList", ",", "Matrix", ",", "j", ",", "i"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"VariableList", "=", 
+       RowBox[{"DeleteCases", "[", 
+        RowBox[{
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{
+           RowBox[{"DeleteCases", "[", 
+            RowBox[{
+             RowBox[{"DeleteCases", "[", 
+              RowBox[{
+               RowBox[{"Parameters", "[", "Tangle", "]"}], ",", "t1"}], "]"}],
+              ",", "t2"}], "]"}], ",", "t3"}], "]"}], ",", "t4"}], "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Matrix", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"EntryList", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", 
+         RowBox[{"Length", "[", "Tangle", "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"j", "=", "1"}], ",", 
+           RowBox[{"j", "\[LessEqual]", 
+            RowBox[{"Length", "[", "VariableList", "]"}]}], ",", 
+           RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"EntryList", "=", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"EntryList", ",", 
+               RowBox[{"Search", "[", 
+                RowBox[{"Tangle", ",", 
+                 RowBox[{"VariableList", "[", 
+                  RowBox[{"[", "j", "]"}], "]"}], ",", "i"}], "]"}]}], 
+              "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+         RowBox[{"(*", "For", "*)"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Matrix", "=", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"Matrix", ",", "EntryList"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"EntryList", "=", 
+          RowBox[{"{", "}"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+      RowBox[{"(*", "For", "*)"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "Matrix", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}], 
+   RowBox[{"(*", "Module", "*)"}]}]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBWIQbTLtjO/NT68du65pBYLonUnGUSC6ZMblWBC9LOln
+K4jeLf23G0RP8M+ZAKKvPZ80D0Q7HHBfBqKlOqpWgWiNT283gegKJ4djIPqb
+rOEpEC3y5t1pEP1y9rbzIJrpluIbEG1tJhK/6PNrR/l5VmA69aFdJoiWvd4B
+pp98TVsLon8VF4Hphc+iL4LoYyu2XQXRSl3qYouBNG/eZ3EQzd4RpwGi093S
+dED0lVUTTUF00bt5YNooNaIERLM6TqgE0bece7mXAGmF/VPAtBbPX0EQHbks
+URZEv9t+TxFE31ozWxksL570eimQ/uf+Ekxb7DI/vRJIy9SfPw+iAaDYzPM=
+
+  "],
+ CellLabel->"In[75]:=",ExpressionUUID->"5f597c58-296a-45f0-a682-60125ff35c6c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Calculate", " ", "augmented", " ", "matrix"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"CreateMatrix", "[", 
+    RowBox[{"Matrix1_", ",", "Tangle2_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"i", ",", "Matrix", ",", "Entry"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "Matrix1", "]"}], "\[Equal]", 
+         RowBox[{"Length", "[", "Tangle2", "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Matrix", "=", "Matrix1"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"i", "=", "1"}], ",", 
+           RowBox[{"i", "\[LessEqual]", 
+            RowBox[{"Length", "[", "Tangle2", "]"}]}], ",", 
+           RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"Entry", "=", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{
+               RowBox[{"Matrix", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", 
+               RowBox[{"Tangle2", "[", 
+                RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Matrix", "=", 
+             RowBox[{"ReplacePart", "[", 
+              RowBox[{"Matrix", ",", 
+               RowBox[{"i", "\[Rule]", " ", "Entry"}]}], "]"}]}]}]}], 
+          "\[IndentingNewLine]", "]"}]}], 
+        RowBox[{"(*", "For", "*)"}], "\[IndentingNewLine]", ",", 
+        RowBox[{"Print", "[", "\"\<not possible\>\"", "]"}]}], 
+       "\[IndentingNewLine]", "]"}], 
+      RowBox[{"(*", "If", "*)"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "Matrix", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}], 
+   RowBox[{"(*", "Module", "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.751617141219845*^9, 3.7516173571474524`*^9}, {
+  3.751617445300247*^9, 3.7516174768473186`*^9}, {3.7516201711030807`*^9, 
+  3.7516201713621073`*^9}, {3.751620215726304*^9, 3.751620250378742*^9}, {
+  3.751620299594515*^9, 3.7516203195188723`*^9}, {3.751620474153326*^9, 
+  3.751620507208268*^9}, {3.7516284179419813`*^9, 3.751628420233438*^9}, {
+  3.75162846172199*^9, 3.751628465849367*^9}},
+ CellLabel->"In[76]:=",ExpressionUUID->"75768b3b-dc16-4696-87e7-e773f55dd855"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"T1Matrix", "=", 
+   RowBox[{"LinEqMatrix", "[", 
+    RowBox[{"T1Comp", "//", "N"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"CoeffMatrix13", "=", 
+   RowBox[{"CreateMatrix", "[", 
+    RowBox[{"T1Matrix", ",", "T3Comp"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7516205672001867`*^9, 3.75162063893666*^9}, 
+   3.751620678914557*^9, {3.7516210528571672`*^9, 3.751621067005186*^9}, {
+   3.7516280126468782`*^9, 3.7516280129156723`*^9}, {3.7741561910610723`*^9, 
+   3.774156191461933*^9}},
+ CellLabel->"In[77]:=",ExpressionUUID->"5c3f5083-062f-427e-8616-f0c82148de0a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MatrixRank", "[", "T1Matrix", "]"}]], "Input",
+ CellChangeTimes->{{3.751620742692782*^9, 3.751620760633959*^9}, {
+  3.75162083019096*^9, 3.751620830365131*^9}, {3.751621070165751*^9, 
+  3.751621070290268*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"1508894d-9aab-439b-a284-324f42039038"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{
+  3.751621074522764*^9, {3.751621973723106*^9, 3.751621984018052*^9}, 
+   3.774156199117968*^9, 3.7772872086108522`*^9},
+ CellLabel->"Out[79]=",ExpressionUUID->"53e9f150-759e-4dde-956e-5a19e009c7f3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MatrixRank", "[", "CoeffMatrix13", "]"}]], "Input",
+ CellChangeTimes->{{3.751621078325603*^9, 3.75162108829556*^9}, {
+  3.751628017077672*^9, 3.751628017291861*^9}},
+ CellLabel->"In[80]:=",ExpressionUUID->"f46afd3e-6cc0-4a35-8803-fae04ffd9a96"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{
+  3.7516210970781927`*^9, {3.75162197828286*^9, 3.751621986039762*^9}, 
+   3.77415620157977*^9, 3.77728721030723*^9},
+ CellLabel->"Out[80]=",ExpressionUUID->"e79a7e51-a2ba-4061-8983-3c3301e6c45d"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"T2ADMatrix", "=", 
+   RowBox[{"LinEqMatrix", "[", "T2ADComp", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"CoeffMatrix22", "=", 
+   RowBox[{"CreateMatrix", "[", 
+    RowBox[{"T2ADMatrix", ",", "T2BCComp"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.751622541643167*^9, 3.751622560281762*^9}, {
+  3.7516229954093246`*^9, 3.751623006226544*^9}, {3.751627803547234*^9, 
+  3.751627814651874*^9}, {3.751628021162813*^9, 3.751628021298609*^9}},
+ CellLabel->"In[81]:=",ExpressionUUID->"c354c149-4829-4436-9125-466dd815a934"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MatrixRank", "[", "T2ADMatrix", "]"}]], "Input",
+ CellChangeTimes->{{3.751622915115261*^9, 3.7516229300744867`*^9}, {
+  3.7516234670401382`*^9, 3.751623468816321*^9}, {3.7516278218962603`*^9, 
+  3.7516278224104223`*^9}},
+ CellLabel->"In[83]:=",ExpressionUUID->"a4e5ea73-9f6f-4acd-9cb0-74f4bd9fa7e7"],
+
+Cell[BoxData["7"], "Output",
+ CellChangeTimes->{3.751622951419216*^9, 3.751623477980816*^9, 
+  3.751627780007782*^9, 3.751627823180263*^9, 3.751627863832168*^9, 
+  3.774156313918244*^9, 3.777287230467306*^9},
+ CellLabel->"Out[83]=",ExpressionUUID->"739020a2-51d8-4443-80b6-62a7c4e52cd4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MatrixRank", "[", "CoeffMatrix22", "]"}]], "Input",
+ CellChangeTimes->{{3.751622932517426*^9, 3.751622938774629*^9}, {
+  3.751628024636978*^9, 3.751628024776741*^9}},
+ CellLabel->"In[84]:=",ExpressionUUID->"1daac859-4749-44f2-8d7d-649d913ffdd4"],
+
+Cell[BoxData["8"], "Output",
+ CellChangeTimes->{3.7516279081659727`*^9, 3.774156414309157*^9, 
+  3.777287291226275*^9},
+ CellLabel->"Out[84]=",ExpressionUUID->"6691a228-173c-4814-9a3f-b46b570c03fe"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1256, 790},
+WindowMargins->{{Automatic, 131}, {Automatic, 70}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 284, 6, 30, "Input",ExpressionUUID->"81dcc3ce-118d-4994-9622-440f0e0614e6"],
+Cell[CellGroupData[{
+Cell[867, 30, 237, 5, 98, "Title",ExpressionUUID->"ed6f78a9-05d2-47f3-af66-d6fe23a6d9fc"],
+Cell[CellGroupData[{
+Cell[1129, 39, 160, 3, 69, "Chapter",ExpressionUUID->"4e07730f-78cc-42f2-8d3d-bc59da7caf4d"],
+Cell[CellGroupData[{
+Cell[1314, 46, 440, 11, 68, "Section",ExpressionUUID->"b60706ac-159f-4b47-94f6-68c36c0a35c6"],
+Cell[1757, 59, 983, 25, 151, "Input",ExpressionUUID->"801ea650-f437-43ba-9f37-80d432615e61"],
+Cell[2743, 86, 1407, 42, 188, "Input",ExpressionUUID->"39eafab2-6728-49b3-8336-a9da49bef5b8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4187, 133, 185, 3, 67, "Section",ExpressionUUID->"575462ea-d1b7-43a5-8f88-6924b6c77091"],
+Cell[4375, 138, 1466, 33, 181, "Input",ExpressionUUID->"6c048de3-8778-4d0b-b0bb-bb88f779c3ca"],
+Cell[5844, 173, 595, 15, 52, "Input",ExpressionUUID->"30e5f47c-3359-4fe9-96b1-29558f343e22"],
+Cell[CellGroupData[{
+Cell[6464, 192, 217, 3, 30, "Input",ExpressionUUID->"f4f466cf-c047-4f7e-8959-17f723a9dfd2"],
+Cell[6684, 197, 8192, 208, 158, "Output",ExpressionUUID->"9bb9ef6d-8acc-47e4-a8d6-15999356521c"]
+}, Open  ]],
+Cell[14891, 408, 4471, 126, 206, "Input",ExpressionUUID->"e9eb5517-2472-478d-a2c3-06811452d082"],
+Cell[19365, 536, 830, 25, 135, "Input",ExpressionUUID->"f1a5053a-147a-464a-a7fd-799421b2ac27"],
+Cell[20198, 563, 568, 16, 65, "Input",ExpressionUUID->"af1338bc-5b60-4599-bb9c-47b1bd758527"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20803, 584, 258, 6, 105, "Section",ExpressionUUID->"26cf6a91-d7e6-4fee-b6b8-1937c5589fd0"],
+Cell[21064, 592, 6341, 147, 724, "Input",ExpressionUUID->"f045bec1-6bdf-4987-9eed-de4b1e3f3629"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27454, 745, 159, 3, 69, "Chapter",ExpressionUUID->"d27f85cd-bede-43f8-a197-d9f7a34c04fa"],
+Cell[CellGroupData[{
+Cell[27638, 752, 224, 6, 67, "Section",ExpressionUUID->"608d78e4-239a-494f-b264-af952a978c4a"],
+Cell[27865, 760, 2358, 49, 346, "Input",ExpressionUUID->"a43cd88e-e341-412d-bf83-65590ffe749c"],
+Cell[30226, 811, 702, 18, 73, "Input",ExpressionUUID->"a6e8f251-0bbc-4ddb-9849-c80a0b370589"],
+Cell[30931, 831, 480, 12, 44, "Input",ExpressionUUID->"457ce4c8-aa75-48fd-b106-0725dd570a73"],
+Cell[CellGroupData[{
+Cell[31436, 847, 227, 5, 30, "Input",ExpressionUUID->"61af94e5-faae-4caf-932a-9edeeeb6ed27"],
+Cell[31666, 854, 27166, 632, 273, "Output",ExpressionUUID->"4c4e8517-002c-44de-8a36-25cffabf391e"]
+}, Open  ]],
+Cell[58847, 1489, 264, 5, 44, "Input",ExpressionUUID->"43dbaabc-3423-4659-8ebc-c1529ed57e93"],
+Cell[CellGroupData[{
+Cell[59136, 1498, 227, 5, 30, "Input",ExpressionUUID->"b97bd0a2-1ea8-4751-b68b-d23dafc84c3f"],
+Cell[59366, 1505, 28859, 667, 273, "Output",ExpressionUUID->"c356c43e-0940-41fa-a499-e07790ae583a"]
+}, Open  ]],
+Cell[88240, 2175, 266, 5, 44, "Input",ExpressionUUID->"d336dda5-5b10-45e9-b360-ef0d51539e59"],
+Cell[CellGroupData[{
+Cell[88531, 2184, 227, 5, 30, "Input",ExpressionUUID->"6466bbcb-12ea-4e67-9629-9da5293b344e"],
+Cell[88761, 2191, 34622, 792, 273, "Output",ExpressionUUID->"745d79a0-a13b-496f-bbae-3b4efdd1c11c"]
+}, Open  ]],
+Cell[123398, 2986, 262, 5, 44, "Input",ExpressionUUID->"c7c78fbd-f71c-45d1-b0f9-b3a51940e3ba"],
+Cell[CellGroupData[{
+Cell[123685, 2995, 227, 5, 30, "Input",ExpressionUUID->"0c8c8c9f-bca3-45ea-a295-d43dbdb66101"],
+Cell[123915, 3002, 24974, 597, 229, "Output",ExpressionUUID->"961bf235-32dc-4b0b-93f8-b1d7e49fc8c5"]
+}, Open  ]],
+Cell[148904, 3602, 270, 6, 102, "Input",ExpressionUUID->"4da3be6c-f4e2-4db8-9d94-38c41253371e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[149211, 3613, 157, 3, 67, "Section",ExpressionUUID->"423e7720-c13b-41fd-b649-338c5404bfd1"],
+Cell[149371, 3618, 2070, 45, 283, "Input",ExpressionUUID->"129f36a5-ca96-4f12-8194-f4607fd85801"],
+Cell[151444, 3665, 1820, 41, 220, "Input",ExpressionUUID->"d73df2b3-7dce-479a-86f8-c170ea7cf2e6"],
+Cell[153267, 3708, 1071, 26, 73, "Input",ExpressionUUID->"62550e1b-eee8-4037-8382-be8248d8a6c0"],
+Cell[154341, 3736, 378, 8, 80, "Input",ExpressionUUID->"d7c7f157-544a-47f0-b5e2-67d094ebb8dc"],
+Cell[154722, 3746, 463, 11, 80, "Input",ExpressionUUID->"fb884808-1ae6-4991-8b46-b3a6df7c5225"],
+Cell[CellGroupData[{
+Cell[155210, 3761, 956, 23, 44, "Input",ExpressionUUID->"d15f180e-081b-4201-86f2-d493e62a8d99"],
+Cell[156169, 3786, 203, 3, 34, "Output",ExpressionUUID->"25beccdb-f003-4e57-a20c-38cbc9728d10"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[156421, 3795, 161, 3, 67, "Section",ExpressionUUID->"78bf1c5e-9e67-45be-a095-2b60847f8d5c"],
+Cell[156585, 3800, 1615, 35, 220, "Input",ExpressionUUID->"1b6cb338-1ed1-4673-8485-f9e15758f433"],
+Cell[158203, 3837, 2541, 52, 283, "Input",ExpressionUUID->"954345af-c657-4a6e-872d-25b83bc6c594"],
+Cell[160747, 3891, 1028, 25, 73, "Input",ExpressionUUID->"9f91bc0b-0b8b-4d4c-a2e0-27e4dc5d273d"],
+Cell[161778, 3918, 631, 15, 152, "Input",ExpressionUUID->"d70fc4b8-827c-4cde-aa1d-3d40b6889f93"],
+Cell[162412, 3935, 416, 10, 80, "Input",ExpressionUUID->"09d7c056-3878-40e7-b314-ddaaf8fc0ada"],
+Cell[CellGroupData[{
+Cell[162853, 3949, 284, 8, 44, "Input",ExpressionUUID->"d0623c82-d14b-48f0-baea-60766153024f"],
+Cell[163140, 3959, 170, 4, 34, "Output",ExpressionUUID->"14fa0f78-45d6-4464-9d3d-b1202e524a19"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[163359, 3969, 199, 3, 67, "Section",ExpressionUUID->"eea75140-9b1d-49cf-93be-a00ed865aa48"],
+Cell[163561, 3974, 1740, 45, 173, "Input",ExpressionUUID->"effd0e48-6c03-4b5c-8980-5ae3b6d9ad79"],
+Cell[165304, 4021, 8154, 167, 883, "Input",ExpressionUUID->"6192a80d-04eb-4a0b-8933-3e5302e3a6d4"],
+Cell[173461, 4190, 3148, 73, 352, "Input",ExpressionUUID->"f0d0f3b2-b98b-4291-af6b-e55c880bc9f6"],
+Cell[176612, 4265, 3101, 74, 409, "Input",ExpressionUUID->"5f597c58-296a-45f0-a682-60125ff35c6c"],
+Cell[179716, 4341, 2397, 55, 367, "Input",ExpressionUUID->"75768b3b-dc16-4696-87e7-e773f55dd855"],
+Cell[182116, 4398, 629, 13, 67, "Input",ExpressionUUID->"5c3f5083-062f-427e-8616-f0c82148de0a"],
+Cell[CellGroupData[{
+Cell[182770, 4415, 312, 5, 44, "Input",ExpressionUUID->"1508894d-9aab-439b-a284-324f42039038"],
+Cell[183085, 4422, 248, 4, 34, "Output",ExpressionUUID->"53e9f150-759e-4dde-956e-5a19e009c7f3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[183370, 4431, 268, 4, 44, "Input",ExpressionUUID->"f46afd3e-6cc0-4a35-8803-fae04ffd9a96"],
+Cell[183641, 4437, 245, 4, 34, "Output",ExpressionUUID->"e79a7e51-a2ba-4061-8983-3c3301e6c45d"]
+}, Open  ]],
+Cell[183901, 4444, 579, 12, 52, "Input",ExpressionUUID->"c354c149-4829-4436-9125-466dd815a934"],
+Cell[CellGroupData[{
+Cell[184505, 4460, 323, 5, 44, "Input",ExpressionUUID->"a4e5ea73-9f6f-4acd-9cb0-74f4bd9fa7e7"],
+Cell[184831, 4467, 287, 4, 34, "Output",ExpressionUUID->"739020a2-51d8-4443-80b6-62a7c4e52cd4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[185155, 4476, 269, 4, 44, "Input",ExpressionUUID->"1daac859-4749-44f2-8d7d-649d913ffdd4"],
+Cell[185427, 4482, 198, 3, 34, "Output",ExpressionUUID->"6691a228-173c-4814-9a3f-b46b570c03fe"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
