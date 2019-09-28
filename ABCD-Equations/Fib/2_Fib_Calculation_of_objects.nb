@@ -1,0 +1,555 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     23797,        547]
+NotebookOptionsPosition[     22743,        521]
+NotebookOutlinePosition[     23080,        536]
+CellTagsIndexPosition[     23037,        533]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{"Run", " ", "1", 
+   RowBox[{"_Polyhedra", ".", "nb"}], " ", 
+   RowBox[{"first", "!"}]}], " ", "*)"}]], "Input",
+ CellChangeTimes->{{3.75057647149743*^9, 3.7505764719658403`*^9}},
+ CellLabel->
+  "In[169]:=",ExpressionUUID->"1f939598-3654-444c-bc41-c6ff6ec2ba66"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Load and store all elements needed from Morrison/Peters/Snyder\
+\[CloseCurlyQuote]s notebook\
+\>", "Section",
+ CellChangeTimes->{
+  3.750576503052533*^9, {3.750576727296047*^9, 3.7505767285807667`*^9}, 
+   3.778577156903491*^9},ExpressionUUID->"d2c1c292-f2f5-4b4a-9eb0-\
+3e6a3cb966c2"],
+
+Cell[BoxData[{
+ RowBox[{"LoadPolyhedraEvaluations", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d", "=", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SqrtBox["5"]}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"t", "=", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      SqrtBox["5"]}], ")"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.750576519793622*^9, 3.750576521741436*^9}, {
+   3.774160418268572*^9, 3.7741604544089193`*^9}, {3.774780780534515*^9, 
+   3.774780810911179*^9}, 3.7785771622503643`*^9, {3.778578024800943*^9, 
+   3.7785780338953047`*^9}},
+ CellLabel->
+  "In[170]:=",ExpressionUUID->"36b1285f-de3b-4080-8b1f-c83d7ace0835"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Define function to convert Morrison/Peters/Snyder\[CloseCurlyQuote]s diagrams \
+into adjacency matrices\
+\>", "Section",
+ CellChangeTimes->{{3.7505765420953283`*^9, 3.750576545152878*^9}, {
+   3.75057659368289*^9, 3.750576617691844*^9}, 
+   3.778577174819046*^9},ExpressionUUID->"5297e85f-685c-4f31-8d9a-\
+5167d67fb03d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "This", " ", "function", " ", "is", " ", "made", " ", "to", " ", 
+    "translate", " ", "between", " ", "the", " ", "data", " ", "types", " ", 
+    RowBox[{
+     RowBox[{"Morrison", "/", "Peters"}], "/", "Snyder"}], " ", "use", " ", 
+    "in", " ", "their", " ", "notebook", " ", "and", " ", "the", " ", "one", 
+    " ", "which", " ", "is", " ", "used", " ", "in", " ", "the", " ", 
+    "TriCats", " ", "usepackage", " ", "by", " ", 
+    RowBox[{"Stiegemann", " ", ".", " ", "It"}], " ", "turns", " ", "the", 
+    " ", "diagrams", " ", "from", " ", 
+    RowBox[{
+     RowBox[{"Morrison", "/", "Snyder"}], "/", "Peters"}], " ", "into", " ", 
+    "adjacency", " ", 
+    RowBox[{"matrices", "."}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"CreateAdjacency", "[", 
+     RowBox[{"BoundaryPoints_", ",", "InternalFaces_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "PointsAndCombinations", ",", "Combinations", ",", "AdjMatrixDegree", 
+        ",", "InOrOutPoints", ",", "InternalVertices", ",", 
+        "NumberInternalVertices", ",", "AdjacencyMatrix", ",", 
+        "CombinePoints", ",", "NewCombinations", ",", "WrongPointPos", ",", 
+        "TriCatDiagram"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Diagram", " ", "Number", " ", "is", " ", "an", " ", "Integer", " ", 
+        "between", " ", "1", " ", "and", " ", "41", " ", "and", " ", 
+        "denotes", " ", "the", " ", "number", " ", "of", " ", "trivalent", 
+        " ", "Graph", " ", "in", " ", "the", " ", "list", " ", "of", " ", 
+        RowBox[{"all", "."}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Adjacency", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"z", "=", "1"}], ",", 
+         RowBox[{"z", "\[LessEqual]", 
+          RowBox[{"Length", "[", 
+           RowBox[{"List", "@@", 
+            RowBox[{"DiagramsWithoutSquares", "[", 
+             RowBox[{"BoundaryPoints", ",", 
+              RowBox[{"_", "\[LessEqual]", "InternalFaces"}]}], "]"}]}], 
+           "]"}]}], ",", 
+         RowBox[{"z", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Combinations", "=", 
+           RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Giving", " ", "a", " ", "list", " ", "will", " ", "all", " ", 
+             "internal", " ", "and", " ", "external", " ", "points", " ", 
+             "as", " ", "well", " ", "as", " ", "how", " ", "to", " ", 
+             "combine", " ", 
+             RowBox[{"them", ":", " ", 
+              RowBox[{
+              "if", " ", "list", " ", "has", " ", "two", " ", "elements"}], 
+              ":", " ", 
+              RowBox[{
+              "just", " ", "combine", " ", "the", " ", "two", " ", 
+               "points"}]}]}], ",", " ", 
+            RowBox[{"if", " ", "list", " ", "has", " ", "three", " ", 
+             RowBox[{"elements", ":", " ", 
+              RowBox[{
+              "combine", " ", "all", " ", "three", " ", "points", " ", "to", 
+               " ", "one", " ", "trivalent", " ", "vertex"}]}]}]}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"PointsAndCombinations", "=", 
+           RowBox[{"List", "@@", 
+            RowBox[{
+             RowBox[{"DiagramsWithoutSquares", "[", 
+              RowBox[{"BoundaryPoints", ",", 
+               RowBox[{"_", "\[LessEqual]", "InternalFaces"}]}], "]"}], "[", 
+             RowBox[{"[", "z", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"InOrOutPoints", "=", 
+           RowBox[{
+            RowBox[{"PointsAndCombinations", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "-", "10000000", "+", "1"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Calculating", " ", "a", " ", "list", " ", "which", " ", "just", 
+             " ", "contains", " ", "the", " ", "information", " ", "how", " ",
+              "to", " ", "combine", " ", "the", " ", "points"}], " ", "-", 
+            " ", 
+            RowBox[{"called", " ", 
+             RowBox[{"\"\<Combinations\>\"", "."}]}]}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"j", "=", "1"}], ",", 
+            RowBox[{"j", "\[LessEqual]", 
+             RowBox[{"Length", "[", 
+              RowBox[{"List", "@@", 
+               RowBox[{"PointsAndCombinations", "[", 
+                RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], ",", 
+            RowBox[{"j", "++"}], ",", 
+            RowBox[{"Combinations", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"Combinations", ",", 
+               RowBox[{
+                RowBox[{"List", "@@", 
+                 RowBox[{
+                  RowBox[{"PointsAndCombinations", "[", 
+                   RowBox[{"[", "2", "]"}], "]"}], "[", 
+                  RowBox[{"[", "j", "]"}], "]"}]}], "-", "10000000", "+", 
+                "1"}]}], "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Giving", " ", "a", " ", "list", " ", "which", " ", "contains", 
+            " ", "just", " ", "the", " ", "combinations", " ", "of", " ", 
+            "three", " ", "points", " ", "which", " ", "lead", " ", "in", " ",
+             "fact", " ", "to", " ", "internal", " ", 
+            RowBox[{"vertices", "."}]}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"InternalVertices", "=", 
+           RowBox[{"Cases", "[", 
+            RowBox[{"Combinations", ",", 
+             RowBox[{"{", 
+              RowBox[{"_Integer", ",", "_Integer", ",", "_Integer"}], "}"}], 
+             ",", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"NumberInternalVertices", "=", 
+           RowBox[{"Length", "[", "InternalVertices", "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AdjMatrixDegree", "=", 
+           RowBox[{
+            RowBox[{"Length", "[", "InOrOutPoints", "]"}], "+", 
+            "NumberInternalVertices"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"This", " ", "routine", " ", "adds", " ", "extra", " ", 
+            RowBox[{"points", ".", " ", "These"}], " ", "points", " ", "are", 
+            " ", "the", " ", "internal", " ", "vertices", " ", "which", " ", 
+            "arise", " ", "from", " ", "the", " ", "combination", " ", "of", 
+            " ", "three", " ", 
+            RowBox[{"points", ".", " ", "It"}], " ", "is", " ", "also", " ", 
+            "calculated", " ", "with", " ", "which", " ", "already", " ", 
+            "existing", " ", "points", " ", "the", " ", "vertices", " ", 
+            "are", " ", 
+            RowBox[{"combined", ".", " ", "This"}], " ", "data", " ", "is", 
+            " ", "added", " ", "to", " ", "the", " ", "list", " ", 
+            RowBox[{"\"\<Combinations\>\"", "."}]}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"m", "=", "1"}], ",", 
+            RowBox[{"m", "\[LessEqual]", "NumberInternalVertices"}], ",", 
+            RowBox[{"m", "++"}], ",", 
+            RowBox[{"For", "[", 
+             RowBox[{
+              RowBox[{"n", "=", "1"}], ",", 
+              RowBox[{"n", "\[LessEqual]", "3"}], ",", 
+              RowBox[{"n", "++"}], ",", 
+              RowBox[{"Combinations", "=", 
+               RowBox[{"Append", "[", 
+                RowBox[{"Combinations", ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Max", "[", "InternalVertices", "]"}], "+", "m"}],
+                    ",", 
+                   RowBox[{
+                    RowBox[{"InternalVertices", "[", 
+                    RowBox[{"[", "m", "]"}], "]"}], "[", 
+                    RowBox[{"[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}]}], 
+             "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Now", " ", "in", " ", "the", " ", "list", " ", 
+            "\"\<Combinations\>\"", " ", "there", " ", "is", " ", 
+            RowBox[{"redundancy", ".", " ", "We"}], " ", "can", " ", 
+            "therefore", " ", "get", " ", "rid", " ", "of", " ", "the", " ", 
+            "lists", " ", "with", " ", "three", " ", "elements", " ", "since",
+             " ", "the", " ", "data", " ", "which", " ", "is", " ", "stored", 
+            " ", "in", " ", "them", " ", "is", " ", "now", " ", "given", " ", 
+            "via", " ", "the", " ", "extra", " ", "added", " ", "points"}], 
+           "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"Combinations", "=", 
+           RowBox[{"Cases", "[", 
+            RowBox[{"Combinations", ",", 
+             RowBox[{"{", 
+              RowBox[{"_Integer", ",", "_Integer"}], "}"}], ",", "Infinity"}],
+             "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "We", " ", "would", " ", "like", " ", "to", " ", "get", " ", 
+             "rid", " ", "of", " ", "the", " ", "initially", " ", "defined", 
+             " ", "internal", " ", "points", " ", "as", " ", "they", " ", 
+             "do", " ", "not", " ", "appear", " ", "in", " ", "the", " ", 
+             "adjacency", " ", 
+             RowBox[{"matrix", ".", " ", "They"}], " ", "always", " ", "lie", 
+             " ", "on", " ", "the", " ", "line", " ", "between", " ", "two", 
+             " ", "trivalent", " ", "vertices", " ", "which", " ", "arose", 
+             " ", "from", " ", "the", " ", "combination", " ", "of", " ", 
+             "three", " ", 
+             RowBox[{"points", ".", " ", "The"}], " ", "routine", " ", "does",
+              " ", "the", " ", 
+             RowBox[{"following", ":", " ", 
+              RowBox[{"if", " ", "an", " ", "internal", " ", "point", " ", 
+               RowBox[{"(", 
+                RowBox[{
+                "which", " ", "are", " ", "points", " ", "greater", " ", 
+                 "than", " ", "6"}], ")"}], " ", "arises", " ", "exactly", 
+               " ", "two", " ", "times", " ", "in", " ", 
+               "\"\<Combinations\>\""}]}]}], ",", " ", 
+            RowBox[{"it", " ", "is", " ", 
+             RowBox[{"deleted", ".", " ", "In"}], " ", "that", " ", "case"}], 
+            ",", " ", 
+            RowBox[{
+            "the", " ", "two", " ", "points", " ", "with", " ", "which", " ", 
+             "it", " ", "was", " ", "combined", " ", "become", " ", 
+             RowBox[{"combined", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"NewCombinations", "=", 
+           RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"WrongPointPos", "=", 
+           RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"o", "=", 
+             RowBox[{"BoundaryPoints", "+", "1"}]}], ",", 
+            RowBox[{"o", "\[LessEqual]", 
+             RowBox[{"Max", "[", "Combinations", "]"}]}], ",", 
+            RowBox[{"o", "++"}], ",", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Count", "[", 
+                RowBox[{
+                 RowBox[{"Flatten", "[", "Combinations", "]"}], ",", "o"}], 
+                "]"}], "==", "2"}], ",", 
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"p", "=", "1"}], ",", 
+                RowBox[{"p", "\[LessEqual]", 
+                 RowBox[{"Length", "[", "Combinations", "]"}]}], ",", 
+                RowBox[{"p", "++"}], ",", 
+                RowBox[{
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"Combinations", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}], ",", "o"}], "]"}], ",", 
+                   RowBox[{
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"WrongPointPos", ",", 
+                    RowBox[{"{", "p", "}"}]}], "]"}], ";", 
+                    RowBox[{"NewCombinations", "=", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"NewCombinations", ",", 
+                    RowBox[{"Combinations", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}]}], "]"}]}]}]}], "]"}], ";", 
+                 RowBox[{"NewCombinations", "=", 
+                  RowBox[{"DeleteCases", "[", 
+                   RowBox[{
+                    RowBox[{"Flatten", "[", "NewCombinations", "]"}], ",", 
+                    "o"}], "]"}]}], ";"}]}], "]"}]}], "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"NewCombinations", "=", 
+           RowBox[{"Partition", "[", 
+            RowBox[{"NewCombinations", ",", "2"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Combinations", "=", 
+           RowBox[{"Delete", "[", 
+            RowBox[{"Combinations", ",", "WrongPointPos"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"NewCombinations", "\[NotEqual]", 
+             RowBox[{"{", "}"}]}], ",", 
+            RowBox[{"For", "[", 
+             RowBox[{
+              RowBox[{"q", "=", "1"}], ",", 
+              RowBox[{"q", "\[LessEqual]", 
+               RowBox[{"Length", "[", "NewCombinations", "]"}]}], ",", 
+              RowBox[{"q", "++"}], ",", 
+              RowBox[{"Combinations", "=", 
+               RowBox[{"Append", "[", 
+                RowBox[{"Combinations", ",", 
+                 RowBox[{"NewCombinations", "[", 
+                  RowBox[{"[", "q", "]"}], "]"}]}], "]"}]}]}], "]"}]}], "]"}],
+           ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+           "By", " ", "adding", " ", "extra", " ", "points", " ", "and", " ", 
+            "deleting", " ", "initial", " ", "points", " ", "the", " ", 
+            "list", " ", "now", " ", "does", " ", "not", " ", "necessarily", 
+            " ", "contain", " ", "consecutive", " ", "points", " ", "any", 
+            " ", 
+            RowBox[{"more", ".", " ", "We"}], " ", "would", " ", "like", " ", 
+            "to", " ", "fix", " ", "this", " ", "to", " ", "have", " ", "a", 
+            " ", "canonical", " ", "numbering", " ", "of", " ", "all", " ", 
+            "points"}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"s", "=", 
+             RowBox[{"BoundaryPoints", "+", "1"}]}], ",", 
+            RowBox[{"s", "\[LessEqual]", 
+             RowBox[{"Max", "[", "Combinations", "]"}]}], ",", 
+            RowBox[{"s", "++"}], ",", 
+            RowBox[{"Combinations", "=", 
+             RowBox[{"Combinations", "/.", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Min", "[", 
+                 RowBox[{"Select", "[", 
+                  RowBox[{
+                   RowBox[{"Flatten", "[", "Combinations", "]"}], ",", 
+                   RowBox[{"Between", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"s", ",", 
+                    RowBox[{"Max", "[", "Combinations", "]"}]}], "}"}], 
+                    "]"}]}], "]"}], "]"}], "\[Rule]", "s"}], "}"}]}]}]}], 
+           "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Because", " ", "our", " ", "adjaceny", " ", "matrices", " ", 
+             "are", " ", "symmetric"}], ",", " ", 
+            RowBox[{"with", " ", "the", " ", "entry", " ", 
+             RowBox[{"(", 
+              RowBox[{"i", ",", "j"}], ")"}], " ", "we", " ", "always", " ", 
+             "also", " ", "have", " ", "to", " ", "add", " ", "the", " ", 
+             "entry", " ", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"j", ",", "i"}], ")"}], ".", " ", "We"}], " ", "add", 
+             " ", "these", " ", "points", " ", "to", " ", "our", " ", "list", 
+             " ", 
+             RowBox[{"now", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"CombinePoints", "=", "Combinations"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"r", "=", "1"}], ",", 
+            RowBox[{"r", "\[LessEqual]", 
+             RowBox[{"Length", "[", "Combinations", "]"}]}], ",", 
+            RowBox[{"r", "++"}], ",", 
+            RowBox[{"CombinePoints", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"CombinePoints", ",", 
+               RowBox[{"Reverse", "[", 
+                RowBox[{"Combinations", "[", 
+                 RowBox[{"[", "r", "]"}], "]"}], "]"}]}], "]"}]}]}], "]"}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"Create", " ", "the", " ", "adjacency", " ", "matrix", " ", 
+            RowBox[{"now", "."}]}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"AdjacencyMatrix", "=", 
+           RowBox[{"ConstantArray", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"{", 
+              RowBox[{"AdjMatrixDegree", ",", "AdjMatrixDegree"}], "}"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"u", "=", "1"}], ",", 
+            RowBox[{"u", "\[LessEqual]", 
+             RowBox[{"Length", "[", "CombinePoints", "]"}]}], ",", 
+            RowBox[{"u", "++"}], ",", 
+            RowBox[{"AdjacencyMatrix", "=", 
+             RowBox[{"ReplacePart", "[", 
+              RowBox[{"AdjacencyMatrix", ",", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"CombinePoints", "[", 
+                    RowBox[{"[", "u", "]"}], "]"}], "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], ",", 
+                  RowBox[{
+                   RowBox[{"CombinePoints", "[", 
+                    RowBox[{"[", "u", "]"}], "]"}], "[", 
+                   RowBox[{"[", "2", "]"}], "]"}]}], "}"}], "\[Rule]", 
+                "1"}]}], "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"TriCatDiagram", "=", 
+           RowBox[{"Diagram", "[", 
+            RowBox[{"AdjacencyMatrix", ",", 
+             RowBox[{"{", "}"}], ",", 
+             RowBox[{"Range", "[", "BoundaryPoints", "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"Adjacency", ",", "TriCatDiagram"}], "]"}]}]}], "]"}], ";",
+        "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "Adjacency", "]"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.75058636585236*^9, 3.7505863716260242`*^9}, 
+   3.778577181174395*^9},
+ CellLabel->
+  "In[174]:=",ExpressionUUID->"b935f485-89e9-4df3-b0d6-95164aaa895a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Store adjacency matrices of elements in morphism spaces C(6,1) and C(6,2)\
+\>", "Section",
+ CellChangeTimes->{{3.750576671349888*^9, 
+  3.750576715805663*^9}},ExpressionUUID->"3370d18e-1bcc-4f4a-9bdd-\
+ff35efbdda1a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"C61", "=", 
+   RowBox[{"CreateAdjacency", "[", 
+    RowBox[{"6", ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Put", "[", 
+   RowBox[{"C61", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<C61.m\>\""}], "}"}],
+      "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"C62", "=", 
+   RowBox[{"CreateAdjacency", "[", 
+    RowBox[{"6", ",", "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Put", "[", 
+   RowBox[{"C62", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<C62.m\>\""}], "}"}],
+      "]"}]}], "]"}], ";"}]}], "Input",
+ CellLabel->
+  "In[175]:=",ExpressionUUID->"00abadbb-d70e-471b-864a-a133119bfce9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.7785783420379267`*^9, 
+  3.778578345678833*^9}},ExpressionUUID->"d38d55f3-c6b7-4f30-8543-\
+9af0667ba625"]
+}, Open  ]]
+},
+WindowSize->{808, 691},
+WindowMargins->{{Automatic, 684}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 308, 7, 30, "Input",ExpressionUUID->"1f939598-3654-444c-bc41-c6ff6ec2ba66"],
+Cell[CellGroupData[{
+Cell[891, 31, 295, 7, 105, "Section",ExpressionUUID->"d2c1c292-f2f5-4b4a-9eb0-3e6a3cb966c2"],
+Cell[1189, 40, 833, 23, 128, "Input",ExpressionUUID->"36b1285f-de3b-4080-8b1f-c83d7ace0835"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2059, 68, 330, 7, 105, "Section",ExpressionUUID->"5297e85f-685c-4f31-8d9a-5167d67fb03d"],
+Cell[2392, 77, 18994, 396, 2257, "Input",ExpressionUUID->"b935f485-89e9-4df3-b0d6-95164aaa895a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21423, 478, 226, 5, 105, "Section",ExpressionUUID->"3370d18e-1bcc-4f4a-9bdd-ff35efbdda1a"],
+Cell[21652, 485, 874, 26, 122, "Input",ExpressionUUID->"00abadbb-d70e-471b-864a-a133119bfce9"],
+Cell[22529, 513, 198, 5, 44, "Input",ExpressionUUID->"d38d55f3-c6b7-4f30-8543-9af0667ba625"]
+}, Open  ]]
+}
+]
+*)
+
